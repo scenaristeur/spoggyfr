@@ -17,6 +17,8 @@ import { plusIcon, minusIcon } from './my-icons.js';
 import { ButtonSharedStyles } from './button-shared-styles.js';
 import '@polymer/paper-input/paper-input.js';
 import '@polymer/paper-button/paper-button.js';
+import  '/node_modules/evejs/dist/eve.custom.js';
+import { CreateAgent } from '../agents/CreateAgent.js'
 
 // This is a reusable element. It is not connected to the store. You can
 // imagine that it could just as well be a third-party element that you
@@ -67,6 +69,14 @@ class AgentCreate extends LitElement {
     this.value = 0;
   }
 
+  firstUpdated() {
+   //this.name = this.destinataire+"_Input"
+   this.agentCreate = new CreateAgent("agentCreate", this);
+   console.log(this.agentCreate);
+   //  this.agentLogin.send('agentApp', {type: 'dispo', name: 'agentLogin' });
+   //  console.log("DESTINATAIRE2:",this.destinataire);
+}
+
   _onIncrement() {
     this.value++;
     this.clicks++;
@@ -82,6 +92,7 @@ class AgentCreate extends LitElement {
   _onCreate(){
     this.nom = this.shadowRoot.getElementById("nomInput").value;
     console.log("Create",this.nom);
+    this.agentCreate.send('agentListe', {type: 'add', nom: this.nom });
   }
 }
 

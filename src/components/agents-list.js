@@ -16,6 +16,9 @@ import { plusIcon, minusIcon } from './my-icons.js';
 // These are the shared styles needed by this element.
 import { ButtonSharedStyles } from './button-shared-styles.js';
 
+import  '/node_modules/evejs/dist/eve.custom.js';
+import { ListeAgent } from '../agents/ListeAgent.js'
+
 // This is a reusable element. It is not connected to the store. You can
 // imagine that it could just as well be a third-party element that you
 // got from someone else.
@@ -25,7 +28,8 @@ class AgentsList extends LitElement {
       /* The total number of clicks you've done. */
       clicks: { type: Number },
       /* The current value of the counter. */
-      value: { type: Number }
+      value: { type: Number },
+      agents: {type: Array}
     }
   }
 
@@ -33,26 +37,28 @@ class AgentsList extends LitElement {
     return [
       ButtonSharedStyles,
       css`
-        span {
-          width: 20px;
-          display: inline-block;
-          text-align: center;
-          font-weight: bold;
-        }
+      span {
+        width: 20px;
+        display: inline-block;
+        text-align: center;
+        font-weight: bold;
+      }
       `
     ];
   }
 
   render() {
     return html`
-      <div>
-        <p>
-          Clicked: <span>${this.clicks}</span> times.
-          Value is <span>${this.value}</span>.
-        <!--  <button @click="${this._onIncrement}" title="Add 1">${plusIcon}</button>-->
-          <button @click="${this._onDecrement}" title="Minus 1">${minusIcon}</button>
-        </p>
-      </div>
+    <div>
+    <p>
+    Agents: <span>${this.agents.length}</span> agents.
+
+    <ul>
+    ${this.agents.map((agent) => html`<li>${agent}</li>`)}
+    </ul>
+    <button @click="${this._onDecrement}" title="Minus 1">${minusIcon}</button>
+    </p>
+    </div>
     `;
   }
 
@@ -60,6 +66,27 @@ class AgentsList extends LitElement {
     super();
     this.clicks = 0;
     this.value = 0;
+    this.agents = ["Spoggy", "David"]
+  }
+
+  firstUpdated() {
+    //this.name = this.destinataire+"_Input"
+    this.agentListe = new ListeAgent("agentListe", this);
+    console.log(this.agentListe);
+    //  this.agentLogin.send('agentApp', {type: 'dispo', name: 'agentLogin' });
+    //  console.log("DESTINATAIRE2:",this.destinataire);
+  }
+
+
+  add(nom){
+    console.log(nom);
+    var agents = this.agents;
+    this.agents = [];
+    agents.push(nom)
+    this.agents = agents;
+    console.log(this.agents)
+  /*  this.agents.push(nom)
+    this.render(this.agents);*/
   }
 
   _onIncrement() {
