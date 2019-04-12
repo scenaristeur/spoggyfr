@@ -26,11 +26,7 @@ import { CreateAgent } from '../agents/CreateAgent.js'
 class AgentCreate extends LitElement {
   static get properties() {
     return {
-      /* The total number of clicks you've done. */
-      clicks: { type: Number },
-      /* The current value of the counter. */
-      value: { type: Number },
-      nom: { type: String}
+      agent: { type: Object}
     }
   }
 
@@ -52,11 +48,12 @@ class AgentCreate extends LitElement {
     return html`
     <div>
     <p>
-    Clicked: <span>${this.clicks}</span> times.
-    Value is <span>${this.value}</span>.
-    Nom is <span>${this.nom}</span>.
+    <small>Pour ajouter une information dans Spoggy, créez un agent. Pour explorer Spoggy, recherchez un agent
     <paper-input id="nomInput" label="Nom de l'agent"></paper-input>
+    <small>A quel niveau d'abstraction placez-vous cet agent ? Est-ce une Personne, une organisation, un pays, une molécule...?</small>
+    <paper-input id="levelInput" label="Niveau d'abstraction"></paper-input><br>
     <paper-button raised @click="${this._onCreate}">Créer l'agent</paper-button>
+    <paper-button raised @click="${this._onRecherche}">Rechercher un agent</paper-button>
 
     </p>
     </div>
@@ -65,17 +62,16 @@ class AgentCreate extends LitElement {
 
   constructor() {
     super();
-    this.clicks = 0;
-    this.value = 0;
+    this.agent = {};
   }
 
   firstUpdated() {
-   //this.name = this.destinataire+"_Input"
-   this.agentCreate = new CreateAgent("agentCreate", this);
-   console.log(this.agentCreate);
-   //  this.agentLogin.send('agentApp', {type: 'dispo', name: 'agentLogin' });
-   //  console.log("DESTINATAIRE2:",this.destinataire);
-}
+    //this.name = this.destinataire+"_Input"
+    this.agentCreate = new CreateAgent("agentCreate", this);
+    console.log(this.agentCreate);
+    //  this.agentLogin.send('agentApp', {type: 'dispo', name: 'agentLogin' });
+    //  console.log("DESTINATAIRE2:",this.destinataire);
+  }
 
   _onIncrement() {
     this.value++;
@@ -90,9 +86,17 @@ class AgentCreate extends LitElement {
   }
 
   _onCreate(){
-    this.nom = this.shadowRoot.getElementById("nomInput").value;
-    console.log("Create",this.nom);
-    this.agentCreate.send('agentListe', {type: 'add', nom: this.nom });
+    this.agent.nom = this.shadowRoot.getElementById("nomInput").value;
+    this.agent.level = this.shadowRoot.getElementById("levelInput").value;
+    console.log("Create",this.agent);
+    this.agentCreate.send('agentListe', {type: 'add', agent: this.agent });
+  }
+
+  _onRecherche(){
+    this.agent.nom = this.shadowRoot.getElementById("nomInput").value;
+    this.agent.level = this.shadowRoot.getElementById("levelInput").value;
+    console.log("Recherche",this.agent);
+    this.agentCreate.send('agentListe', {type: 'recherche', agent: this.agent });
   }
 }
 

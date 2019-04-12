@@ -41,7 +41,10 @@ ListeAgent.prototype.receive = function(from, message) {
 
   switch(message.type){
     case 'add':
-    this.app.add(message.nom);
+    this.app.add(message.agent);
+    break;
+    case 'recherche':
+    this.app.recherche(message.agent);
     break;
     default:
     console.log(message);

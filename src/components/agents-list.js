@@ -54,52 +54,76 @@ class AgentsList extends LitElement {
     Agents: <span>${this.agents.length}</span> agents.
 
     <ul>
-    ${this.agents.map((agent) => html`<li>${agent}</li>`)}
-    </ul>
-    <button @click="${this._onDecrement}" title="Minus 1">${minusIcon}</button>
-    </p>
-    </div>
-    `;
+    ${this.agents.map((agent) => html`<li>
+      ${agent.nom}, niveau : ${agent.level}
+      <button @click="${this._onDecrement}" title="Minus 1">${minusIcon}</button>
+      </li>`)}
+      </ul>
+
+      </p>
+      </div>
+      `;
+    }
+
+    constructor() {
+      super();
+      this.clicks = 0;
+      this.value = 0;
+      this.agents = [{"nom":"Spoggy", "level":"Application"}, {"nom":"David", "level":"Personne"}]
+    }
+
+    firstUpdated() {
+      //this.name = this.destinataire+"_Input"
+      this.agentListe = new ListeAgent("agentListe", this);
+      console.log(this.agentListe);
+      //  this.agentLogin.send('agentApp', {type: 'dispo', name: 'agentLogin' });
+      //  console.log("DESTINATAIRE2:",this.destinataire);
+    }
+
+
+    add(agent){
+      console.log("nouveau",agent)
+      console.log(this.agents)
+      /*  console.log(agent);
+      var agents = this.agents;
+      this.agents = [];
+      agents.push(agent)
+      this.agents = agents;
+      console.log(this.agents)*/
+    /*  this.agents.push(agent)
+      console.log(this.agents)*/
+    //  this.render(this.agents);
+    this.agents = [...this.agents, agent]
+    }
+    recherche(agent){
+      var byNames = this.filterItemsByNom(this.agents,agent.nom);
+      var byLevels = this.filterItemsByLevel(this.agents,agent.level);
+      console.log("bynames",byNames)
+      console.log("bylevels",byLevels)
+    }
+
+    filterItemsByNom(arr, query) {
+      return arr.filter(function(el) {
+        return el.nom.toLowerCase().indexOf(query.toLowerCase()) > -1;
+      })
+    }
+    filterItemsByLevel(arr, query) {
+      return arr.filter(function(el) {
+        return el.level.toLowerCase().indexOf(query.toLowerCase()) > -1;
+      })
+    }
+
+    _onIncrement() {
+      this.value++;
+      this.clicks++;
+      this.dispatchEvent(new CustomEvent('counter-incremented'));
+    }
+
+    _onDecrement() {
+      this.value--;
+      this.clicks++;
+      this.dispatchEvent(new CustomEvent('counter-decremented'));
+    }
   }
 
-  constructor() {
-    super();
-    this.clicks = 0;
-    this.value = 0;
-    this.agents = ["Spoggy", "David"]
-  }
-
-  firstUpdated() {
-    //this.name = this.destinataire+"_Input"
-    this.agentListe = new ListeAgent("agentListe", this);
-    console.log(this.agentListe);
-    //  this.agentLogin.send('agentApp', {type: 'dispo', name: 'agentLogin' });
-    //  console.log("DESTINATAIRE2:",this.destinataire);
-  }
-
-
-  add(nom){
-    console.log(nom);
-    var agents = this.agents;
-    this.agents = [];
-    agents.push(nom)
-    this.agents = agents;
-    console.log(this.agents)
-  /*  this.agents.push(nom)
-    this.render(this.agents);*/
-  }
-
-  _onIncrement() {
-    this.value++;
-    this.clicks++;
-    this.dispatchEvent(new CustomEvent('counter-incremented'));
-  }
-
-  _onDecrement() {
-    this.value--;
-    this.clicks++;
-    this.dispatchEvent(new CustomEvent('counter-decremented'));
-  }
-}
-
-window.customElements.define('agents-list', AgentsList);
+  window.customElements.define('agents-list', AgentsList);
