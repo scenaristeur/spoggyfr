@@ -13,7 +13,7 @@ import { setPassiveTouchGestures } from '@polymer/polymer/lib/utils/settings.js'
 import { installMediaQueryWatcher } from 'pwa-helpers/media-query.js';
 import { installOfflineWatcher } from 'pwa-helpers/network.js';
 import { installRouter } from 'pwa-helpers/router.js';
-//import { updateMetadata } from 'pwa-helpers/metadata.js';
+import { updateMetadata } from 'pwa-helpers/metadata.js';
 
 // These are the elements needed by this element.
 import '@polymer/app-layout/app-drawer/app-drawer.js';
@@ -245,11 +245,11 @@ class MyApp extends LitElement {
   updated(changedProps) {
     if (changedProps.has('_page')) {
       const pageTitle = this.appTitle + ' - ' + this._page;
-    /*  updateMetadata({
+      updateMetadata({
         title: pageTitle,
         description: pageTitle
         // This object also takes an image property, that points to an img src.
-      });*/
+      });
     }
   }
 
