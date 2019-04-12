@@ -12,7 +12,9 @@ import { html } from 'lit-element';
 import { PageViewElement } from './page-view-element.js';
 
 // These are the elements needed by this element.
-import './counter-element.js';
+import './agent-recherche.js';
+import './agent-create.js';
+import './agents-list.js';
 
 // These are the shared styles needed by this element.
 import { SharedStyles } from './shared-styles.js';
@@ -34,25 +36,51 @@ class MyView2 extends PageViewElement {
 
   render() {
     return html`
-      <section>
-        <h2>State container example: simple counter</h2>
-        <div class="circle">${this._clicks}</div>
-        <p>This page contains a reusable <code>&lt;counter-element&gt;</code> which is connected to the
-        store. When the element updates its counter, this page updates the values
-        in the store, and you can see the total number of clicks reflected in
-        the bubble above.</p>
-        <br><br>
-      </section>
-      <section>
-        <p>
-          <counter-element
-              value="${this._value}"
-              clicks="${this._clicks}"
-              @counter-incremented="${this._increment}"
-              @counter-decremented="${this._decrement}">
-          </counter-element>
-        </p>
-      </section>
+    <section>
+    <h2>State container example: simple counter</h2>
+    <div class="circle">${this._clicks}</div>
+    <p>This page contains a reusable <code>&lt;counter-element&gt;</code> which is connected to the
+    store. When the element updates its counter, this page updates the values
+    in the store, and you can see the total number of clicks reflected in
+    the bubble above.</p>
+    <br><br>
+    </section>
+
+    <section>
+    <p>
+    <agent-recherche
+    value="${this._value}"
+    clicks="${this._clicks}"
+    @counter-incremented="${this._increment}"
+    @counter-decremented="${this._decrement}">
+    </agent-recherche>
+    </p>
+    </section>
+    <section>
+    <p>
+    <agent-create
+    value="${this._value}"
+    clicks="${this._clicks}"
+    @counter-incremented="${this._increment}"
+    @counter-decremented="${this._decrement}">
+    </agent-create>
+    </p>
+    </section>
+    <section>
+    <p>
+    <agents-list
+    value="${this._value}"
+    clicks="${this._clicks}"
+    @counter-incremented="${this._increment}"
+    @counter-decremented="${this._decrement}">
+    </agents-list>
+    </p>
+    </section>
+
+
+
+
+
     `;
   }
 

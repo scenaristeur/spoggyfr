@@ -20,8 +20,11 @@
   },
   "dependencies": {
     "@polymer/app-layout": "^3.0.0",
+    "@polymer/paper-button": "^3.0.1",
+    "@polymer/paper-input": "^3.0.2",
     "@polymer/polymer": "^3.1.0",
     "@webcomponents/webcomponentsjs": "^2.2.4",
+    "evejs": "github:scenaristeur/evejs",
     "lit-element": "^2.0.1",
     "pwa-helpers": "^0.9.0"
   },
@@ -35,7 +38,7 @@
     "gulp-replace": "^1.0.0",
     "mocha": "^5.2.0",
     "pixelmatch": "^4.0.2",
-    "polymer-cli": "^1.9.3",
+    "polymer-cli": "^1.9.8",
     "polyserve": "^0.27.0",
     "prpl-server": "^1.4.0",
     "puppeteer": "^1.5.0",
