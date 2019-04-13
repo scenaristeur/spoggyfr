@@ -13,6 +13,7 @@ import { PageViewElement } from './page-view-element.js';
 
 // These are the shared styles needed by this element.
 import { SharedStyles } from './shared-styles.js';
+import  './graphe/solid-graph.js';
 
 class MyView1 extends PageViewElement {
   static get styles() {
@@ -23,10 +24,14 @@ class MyView1 extends PageViewElement {
 
   render() {
     return html`
-      <section>
+    <!--  <section>
         <h2>Spoggy</h2>
         <p>This is a text-only page.</p>
         <p>It doesn't do anything other than display some static text.</p>
+      </section>
+-->
+      <section>
+<solid-graph></solid-graph>
       </section>
       <section>
         <h2>Welcome</h2>
