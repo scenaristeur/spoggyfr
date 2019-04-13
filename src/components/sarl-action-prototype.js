@@ -36,7 +36,8 @@ class SarlActionPrototype extends LitElement {
     return html`
     <div>
     <hr>
-    Action Prototype : ${this.name}<br>
+    <h3>Prototype</h3>
+    Nom : ${this.name}<br>
     Parametres (${this.parametres.length}) :
     <ul>
     ${this.parametres.map((parametre) => html`<li>

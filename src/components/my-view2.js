@@ -38,16 +38,6 @@ class MyView2 extends PageViewElement {
   render() {
     return html`
     <section>
-    <h2>State container example: simple counter</h2>
-    <div class="circle">${this._clicks}</div>
-    <p>This page contains a reusable <code>&lt;counter-element&gt;</code> which is connected to the
-    store. When the element updates its counter, this page updates the values
-    in the store, and you can see the total number of clicks reflected in
-    the bubble above.</p>
-    <br><br>
-    </section>
-
-    <section>
     <p>
     <sarl-action>Chargement action</sarl-action>
     </p>

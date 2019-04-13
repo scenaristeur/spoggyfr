@@ -39,26 +39,33 @@ class SarlAction extends LitElement {
   render() {
     return html`
     <div>
-    <p>
+    <h1>Action</h1>
+    <small>
+    Une action est la spécification d'une transformation d'une part du système ou de son environnement.
+    Cette transformation garantit les propriétés du résultat si le système, avant la transformation
+    satisfait un ensemble de contraintes.
+    <br>
+    Une action est définie par son prototype et son corps. Le prototype est composé du nom de l'action,
+    d'une séquence de paramètres et du type de valeur retourné.<br>
+    Le corps est une séquence d'expressions qui représentent la transformation.
+    </small>
     <sarl-action-prototype
     name="${this.name}"
     .parametres="${this.parametres}"
     returnedtype="${this.returnedtype}">
     </sarl-action-prototype>
-    </p>
-    <p>
+
     <sarl-action-sequence
     .sequence="${this.sequence}">
     </sarl-action-sequence>
 
-    </p>
     </div>
     `;
   }
 
   constructor() {
     super();
-    this.name = "ACTION inconnue";
+    this.name = "nom de l'action";
     this.parametres= ["parametre1", "parametre2", "parametre3"];
     this.returnedtype= "String";
     this.sequence = ["action1","action2","action3"]

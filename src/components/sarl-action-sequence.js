@@ -34,7 +34,7 @@ class SarlActionSequence extends LitElement {
     return html`
     <div>
     <hr>
-    Action Body<br>
+    <h3>Corps</h3>
     Sequence (${this.sequence.length}):
     <ul>
     ${this.sequence.map((act) => html`<li>
