@@ -15,6 +15,7 @@ import { PageViewElement } from './page-view-element.js';
 import './agent-recherche.js';
 import './agent-create.js';
 import './agents-list.js';
+import './sarl-action.js';
 
 // These are the shared styles needed by this element.
 import { SharedStyles } from './shared-styles.js';
@@ -44,6 +45,10 @@ class MyView2 extends PageViewElement {
     in the store, and you can see the total number of clicks reflected in
     the bubble above.</p>
     <br><br>
+    </section>
+
+    <section>
+    <sarl-action>Chargement action</sarl-action>
     </section>
 
     <section>

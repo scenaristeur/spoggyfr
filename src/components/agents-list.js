@@ -29,7 +29,8 @@ class AgentsList extends LitElement {
       clicks: { type: Number },
       /* The current value of the counter. */
       value: { type: Number },
-      agents: {type: Array}
+      agents:  Array,
+      messages: Array
     }
   }
 
@@ -69,7 +70,8 @@ class AgentsList extends LitElement {
       super();
       this.clicks = 0;
       this.value = 0;
-      this.agents = [{"nom":"Spoggy", "level":"Application"}, {"nom":"David", "level":"Personne"}]
+      this.agents = [];
+        this.messages = [];
     }
 
     firstUpdated() {
@@ -82,19 +84,26 @@ class AgentsList extends LitElement {
 
 
     add(agent){
-      console.log("nouveau",agent)
-      console.log(this.agents)
-      /*  console.log(agent);
-      var agents = this.agents;
+      var agents = this.agents.slice();
       this.agents = [];
-      agents.push(agent)
+      agents.push(agent);
       this.agents = agents;
-      console.log(this.agents)*/
-    /*  this.agents.push(agent)
-      console.log(this.agents)*/
-    //  this.render(this.agents);
-    this.agents = [...this.agents, agent]
+      console.log("après",this.agents)
     }
+
+
+    addMessage(message){
+      console.log(message)
+      var messages = this.messages
+      this.messages = []
+      messages.push(message)
+      this.messages = messages
+      console.log(this.messages)
+      //  this.shadowRoot.getElementById("messages").value = this.messages.join("\n");
+      //  console.log(this.shadowRoot.getElementById("messages").value)
+    }
+
+
     recherche(agent){
       var byNames = this.filterItemsByNom(this.agents,agent.nom);
       var byLevels = this.filterItemsByLevel(this.agents,agent.level);

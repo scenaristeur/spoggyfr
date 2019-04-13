@@ -86,10 +86,12 @@ class AgentCreate extends LitElement {
   }
 
   _onCreate(){
-    this.agent.nom = this.shadowRoot.getElementById("nomInput").value;
-    this.agent.level = this.shadowRoot.getElementById("levelInput").value;
-    console.log("Create",this.agent);
-    this.agentCreate.send('agentListe', {type: 'add', agent: this.agent });
+    var agent = {}
+    agent.nom = this.shadowRoot.getElementById("nomInput").value;
+    agent.level = this.shadowRoot.getElementById("levelInput").value;
+    console.log("Create",agent);
+    this.agentCreate.send('agentListe', {type: 'add', agent: agent });
+  //  this.agentCreate.send('agentListe', {type: 'message', message: agent });
   }
 
   _onRecherche(){

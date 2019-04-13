@@ -1,5 +1,10 @@
 # Spoggy
 
+# based on sarl.io
+SARL is a general-purpose agent-oriented programming language [10]. It
+ aims at providing the fundamental abstractions for dealing with standard agent
+ features: concurrency, distribution, interaction, decentralization, reactivity, autonomy and dynamic reconfiguration.
+
 
 
 
