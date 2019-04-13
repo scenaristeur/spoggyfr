@@ -1,5 +1,6 @@
 import './sarl-competence.js';
 import './sarl-comportement.js';
+import './sarl-contexte.js';
 
 import { LitElement, html, css } from 'lit-element';
 
@@ -9,6 +10,9 @@ class SarlAgent extends LitElement {
       name: String,
       comportements: Array,
       competences: Array,
+      contextes: Array,
+      innerContext: Object,
+      defautContext: Object
     }
   }
 
@@ -20,28 +24,28 @@ class SarlAgent extends LitElement {
     Un agent est une entité autonome possédant un ensemble de comportements (behavior) et de compétences (skill)
     pour réaliser les capacités (capacities) qu'il expose.
     Agent a has a set Sa of individual skills that may be used for building the
-155 agent’s behaviors. Agent a defines the mapping Ma : C → S from one capacity
-156 to a single skill implementation. From this definition, the agent a is able to
-157 determine which skill should be used when a capacity’s action is invoked. A set of
-158 capacity-skill pairs, named the built-in capacities (BIC) is defined into the SARL
-159 specifications [10]. They are considered as essential to respect the commonly
-160 accepted competences of agents, such autonomy, reactivity, pro-activity and
-161 social capacities. The full set of BICs are presented in Section 4 because they
-162 must be implemented into, and provided by the SARL run-time environment.
-163 Among these BICs, the DefaultContextInteractions and
-164 ExternalContextAccess capacities are defined. They give respectively
-165 the access to the agent’s default context da, and the set Ca of contexts in which
-166 the agents belong to, such that da ∈ Ca. ia represents the internal context of
-167 the agent, which is detailed in Section 2.6.
-168 Another BIC is the Behaviors capacity. It enables an agent to incorporate a
-169 collection Ba ⊂ B of behaviors that will determine its global conduct. A behavior
-170 b ∈ B maps a collection of perceptions represented by events to a sequence of
-171 actions. Ob : E → P(A) is the mapping function in Equation 7.
-b = hObi (7)
-172 An agent has also a default behavior directly described within its definition. It
-173 is illustrated by the relationship between Agent and Action types in Figure 1.
-174 By default, the various behaviors of an agent communicate using an event175 driven approach. An event e ∈ E is the specification of anything that happens in
-176 a space s, and may potentially trigger effects by a listener, e.g. agent, behavior.
+    155 agent’s behaviors. Agent a defines the mapping Ma : C → S from one capacity
+    156 to a single skill implementation. From this definition, the agent a is able to
+    157 determine which skill should be used when a capacity’s action is invoked. A set of
+    158 capacity-skill pairs, named the built-in capacities (BIC) is defined into the SARL
+    159 specifications [10]. They are considered as essential to respect the commonly
+    160 accepted competences of agents, such autonomy, reactivity, pro-activity and
+    161 social capacities. The full set of BICs are presented in Section 4 because they
+    162 must be implemented into, and provided by the SARL run-time environment.
+    163 Among these BICs, the DefaultContextInteractions and
+    164 ExternalContextAccess capacities are defined. They give respectively
+    165 the access to the agent’s default context da, and the set Ca of contexts in which
+    166 the agents belong to, such that da ∈ Ca. ia represents the internal context of
+    167 the agent, which is detailed in Section 2.6.
+    168 Another BIC is the Behaviors capacity. It enables an agent to incorporate a
+    169 collection Ba ⊂ B of behaviors that will determine its global conduct. A behavior
+    170 b ∈ B maps a collection of perceptions represented by events to a sequence of
+    171 actions. Ob : E → P(A) is the mapping function in Equation 7.
+    b = hObi (7)
+    172 An agent has also a default behavior directly described within its definition. It
+    173 is illustrated by the relationship between Agent and Action types in Figure 1.
+    174 By default, the various behaviors of an agent communicate using an event175 driven approach. An event e ∈ E is the specification of anything that happens in
+    176 a space s, and may potentially trigger effects by a listener, e.g. agent, behavior.
     </small>
     <h3>
     Nom Agent : ${this.name}
@@ -70,6 +74,28 @@ b = hObi (7)
     }
     </ul>
 
+    <ul>
+    ${this.contextes.map((cont) => html`<li>
+      <h4>
+      Nom contexte: ${cont.name}
+      </h4>
+      <sarl-contexte
+      name="${cont.name}">
+      </sarl-contexte>
+      </li>`)
+    }
+    </ul>
+
+InnerContexte :
+    <sarl-contexte
+    name="${this.innerContext.name}">
+    </sarl-contexte>
+defautContext : 
+    <sarl-contexte
+    name="${this.defautContext.name}">
+    </sarl-contexte>
+
+
     </div>
     `;
   }
@@ -96,7 +122,26 @@ b = hObi (7)
         },
         {
           name: "competence 3"
-        }]
+        }];
+
+        this.contextes =  [
+            {
+              name: "ext  cont 1"
+            },{
+              name: "ext  cont 2"
+            },
+            {
+              name: "ext  cont 3"
+            }
+        ];
+
+          this.defautContext= {
+            name: "default contexte"
+          };
+          this.innerContext={
+            name: "inner contexte"
+          };
+
       }
     }
 
