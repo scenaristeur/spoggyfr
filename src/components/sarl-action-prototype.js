@@ -19,50 +19,42 @@ a = hna, Pa, ra, Bai (1)
 79 language construct.
 */
 
-import './sarl-action-prototype.js';
-import './sarl-action-sequence.js';
 
 
 import { LitElement, html, css } from 'lit-element';
 
-class SarlAction extends LitElement {
+class SarlActionPrototype extends LitElement {
   static get properties() {
     return {
       name: String,
       parametres: Array,
-      prototype: Object,
       returnedtype: String,
-      sequence: Array,
     }
   }
 
   render() {
     return html`
     <div>
-    <p>
-    <sarl-action-prototype
-    name="${this.name}"
-    .parametres="${this.parametres}"
-    returnedtype="${this.returnedtype}">
-    </sarl-action-prototype>
-    </p>
-    <p>
-    <sarl-action-sequence
-    .sequence="${this.sequence}">
-    </sarl-action-sequence>
-
-    </p>
+    <hr>
+    Action Prototype : ${this.name}<br>
+    Parametres (${this.parametres.length}) :
+    <ul>
+    ${this.parametres.map((parametre) => html`<li>
+      ${parametre}
+      </li>`)
+    }
+    </ul>
+    type de valeurs retourné : ${this.returnedtype}
     </div>
     `;
   }
 
   constructor() {
     super();
-    this.name = "ACTION inconnue";
-    this.parametres= ["parametre1", "parametre2", "parametre3"];
-    this.returnedtype= "String";
-    this.sequence = ["action1","action2","action3"]
+    this.name= "";
+    this.parametres= [];
+    this.returnedtype= "";
   }
 }
 
-window.customElements.define('sarl-action', SarlAction);
+window.customElements.define('sarl-action-prototype', SarlActionPrototype);

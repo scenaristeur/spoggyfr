@@ -48,7 +48,9 @@ class MyView2 extends PageViewElement {
     </section>
 
     <section>
+    <p>
     <sarl-action>Chargement action</sarl-action>
+    </p>
     </section>
 
     <section>

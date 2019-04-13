@@ -19,19 +19,13 @@ a = hna, Pa, ra, Bai (1)
 79 language construct.
 */
 
-import './sarl-action-prototype.js';
-import './sarl-action-sequence.js';
 
 
 import { LitElement, html, css } from 'lit-element';
 
-class SarlAction extends LitElement {
+class SarlActionSequence extends LitElement {
   static get properties() {
     return {
-      name: String,
-      parametres: Array,
-      prototype: Object,
-      returnedtype: String,
       sequence: Array,
     }
   }
@@ -39,30 +33,22 @@ class SarlAction extends LitElement {
   render() {
     return html`
     <div>
-    <p>
-    <sarl-action-prototype
-    name="${this.name}"
-    .parametres="${this.parametres}"
-    returnedtype="${this.returnedtype}">
-    </sarl-action-prototype>
-    </p>
-    <p>
-    <sarl-action-sequence
-    .sequence="${this.sequence}">
-    </sarl-action-sequence>
-
-    </p>
+    <hr>
+    Action Body<br>
+    Sequence (${this.sequence.length}):
+    <ul>
+    ${this.sequence.map((act) => html`<li>
+      ${act}
+      </li>`)}
+      </ul>
     </div>
     `;
   }
 
   constructor() {
     super();
-    this.name = "ACTION inconnue";
-    this.parametres= ["parametre1", "parametre2", "parametre3"];
-    this.returnedtype= "String";
-    this.sequence = ["action1","action2","action3"]
+    this.sequence = [];
   }
 }
 
-window.customElements.define('sarl-action', SarlAction);
+window.customElements.define('sarl-action-sequence', SarlActionSequence);
