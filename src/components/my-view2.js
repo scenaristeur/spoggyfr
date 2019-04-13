@@ -20,6 +20,8 @@ import './sarl-capacite.js';
 import './sarl-competence.js';
 import './sarl-espace.js';
 import './sarl-contexte.js';
+import './sarl-agent.js';
+import './sarl-comportement.js';
 // These are the shared styles needed by this element.
 import { SharedStyles } from './shared-styles.js';
 
@@ -45,6 +47,8 @@ class MyView2 extends PageViewElement {
     <section><p><sarl-competence>Chargement competence</sarl-competence></p></section>
     <section><p><sarl-espace>Chargement espace</sarl-espace></p></section>
     <section><p><sarl-contexte>Chargement contexte</sarl-contexte></p></section>
+    <section><p><sarl-agent>Chargement agent</sarl-agent></p></section>
+    <section><p><sarl-comportement>Chargement comportement</sarl-comportement></p></section>
 
     <section>
     <p>
