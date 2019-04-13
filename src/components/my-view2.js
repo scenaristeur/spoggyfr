@@ -18,6 +18,8 @@ import './agents-list.js';
 import './sarl-action.js';
 import './sarl-capacite.js';
 import './sarl-competence.js';
+import './sarl-espace.js';
+import './sarl-contexte.js';
 // These are the shared styles needed by this element.
 import { SharedStyles } from './shared-styles.js';
 
@@ -39,9 +41,10 @@ class MyView2 extends PageViewElement {
   render() {
     return html`
     <section><p><sarl-action>Chargement action</sarl-action></p></section>
-
     <section><p><sarl-capacite>Chargement capacite</sarl-capacite></p></section>
     <section><p><sarl-competence>Chargement competence</sarl-competence></p></section>
+    <section><p><sarl-espace>Chargement espace</sarl-espace></p></section>
+    <section><p><sarl-contexte>Chargement contexte</sarl-contexte></p></section>
 
     <section>
     <p>

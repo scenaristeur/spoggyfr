@@ -15,7 +15,12 @@ class SarlCompetence extends LitElement {
     <div>
     <h1>Competence</h1>
     <small>
-    Une compétence est une implémentation possible de capacités remplissant toutes les contraintes de ces capacités.
+    Une compétence est une implémentation possible de capacités remplissant toutes les contraintes de ces capacités.<br>
+    Un agent peut dynamiquement evoluer en apprenant ou en acquérant de nouvelles capacités.
+    Il peut également changer la compétence associée à une capacité donnée.
+    En acquérant de nouvelles capacités, un agent peut avoir accès à de nouvelles tâches nécessitant ces capacités.
+    Ceci fournit aux agent un mechanisme d'auto-adaptation qui leur permet de changer dynamiquement leur architecture
+    en accord avec leurs besoins et leurs buts courants.
     </small>
     <h3>
     Nom Compétence : ${this.name}
