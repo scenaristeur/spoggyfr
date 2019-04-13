@@ -27,7 +27,7 @@ class SarlActionPrototype extends LitElement {
   static get properties() {
     return {
       name: String,
-      parametres: Array,
+      parameters: Array,
       returnedtype: String,
     }
   }
@@ -38,10 +38,10 @@ class SarlActionPrototype extends LitElement {
     <hr>
     <h3>Prototype</h3>
     Nom : ${this.name}<br>
-    Parametres (${this.parametres.length}) :
+    parameters (${this.parameters.length}) :
     <ul>
-    ${this.parametres.map((parametre) => html`<li>
-      ${parametre}
+    ${this.parameters.map((parameter) => html`<li>
+      ${parameter}
       </li>`)
     }
     </ul>
@@ -53,7 +53,7 @@ class SarlActionPrototype extends LitElement {
   constructor() {
     super();
     this.name= "";
-    this.parametres= [];
+    this.parameters= [];
     this.returnedtype= "";
   }
 }

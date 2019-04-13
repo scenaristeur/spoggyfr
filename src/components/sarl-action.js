@@ -29,7 +29,7 @@ class SarlAction extends LitElement {
   static get properties() {
     return {
       name: String,
-      parametres: Array,
+      parameters: Array,
       prototype: Object,
       returnedtype: String,
       sequence: Array,
@@ -51,7 +51,7 @@ class SarlAction extends LitElement {
     </small>
     <sarl-action-prototype
     name="${this.name}"
-    .parametres="${this.parametres}"
+    .parameters="${this.parameters}"
     returnedtype="${this.returnedtype}">
     </sarl-action-prototype>
 
@@ -66,7 +66,7 @@ class SarlAction extends LitElement {
   constructor() {
     super();
     this.name = "nom de l'action";
-    this.parametres= ["parametre1", "parametre2", "parametre3"];
+    this.parameters= ["parameter1", "parameter2", "parameter3"];
     this.returnedtype= "String";
     this.sequence = ["action1","action2","action3"]
   }
