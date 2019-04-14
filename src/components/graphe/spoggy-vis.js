@@ -33,7 +33,7 @@ class SpoggyVis extends LitElement {
     */
     return html`
     ${GraphStyles}
-    <link rel="stylesheet" href="../node_modules/vis/dist/vis.css">
+    <link rel="stylesheet" href="/node_modules/vis/dist/vis.css">
     <style>
     #mynetwork {
       top: 0;
