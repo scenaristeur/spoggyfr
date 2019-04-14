@@ -1,81 +1,149 @@
-/**
-@license
-Copyright (c) 2018 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
-*/
-
 import { LitElement, html, css } from 'lit-element';
+import '@polymer/paper-input/paper-input.js';
+import '@polymer/paper-button/paper-button.js';
+import '@polymer/paper-item/paper-item.js';
+import './solid-utils';
+import  '/node_modules/evejs/dist/eve.custom.js';
+import { GridAgent } from '../agents/GridAgent.js'
 
-// These are the elements needed by this element.
-import { plusIcon, minusIcon } from './my-icons.js';
 
-// These are the shared styles needed by this element.
-import { ButtonSharedStyles } from './button-shared-styles.js';
-
-// This is a reusable element. It is not connected to the store. You can
-// imagine that it could just as well be a third-party element that you
-// got from someone else.
 class SpoggyGrid extends LitElement {
   static get properties() {
     return {
-      /* The total number of clicks you've done. */
-      clicks: { type: Number },
-      /* The current value of the counter. */
-      value: { type: Number },
-      data: Array
+      url: String,
+      data: Array,
+      folder: Object,
+      file: Object
     }
-  }
-
-  static get styles() {
-    return [
-      ButtonSharedStyles,
-      css`
-      span {
-        width: 20px;
-        display: inline-block;
-        text-align: center;
-        font-weight: bold;
-      }
-      `
-    ];
   }
 
   render() {
     return html`
     <div>
     <p>
-    <ul>
-    ${this.data.map((d) => html`<li>
-      ${d}
-      </li>`)}
-      </ul>
-      </p>
-      </div>
-      `;
+    <paper-input id="url_input"></paper-input>
+    <paper-button raised @click="${this._onUrlChange}">Explore</paper-button>
+    <paper-button raised @click="${this._onNouveau}">Nouveau</paper-button>
+    <paper-button raised @click="${this._onRecherche}">Recherche</paper-button>
+
+
+    ${this.folder.name?
+      html`
+      <hr>
+
+      <paper-item @click="${(e) =>  this._onSelect(this.folder.url)}">
+      <h4>${this.folder.name}</h4>
+      </paper-item>
+
+
+      <paper-item @click="${(e) =>  this._onSelect(this.folder.parent)}">
+      <small>  Parent : ${this.folder.parent}</small>
+      </paper-item>
+
+      Dossiers (${this.folder.folders.length})
+
+      ${this.folder.folders.map((fo) => html`
+        <paper-item @click="${(e) =>  this._onSelect(fo.url)}" >
+
+        ${fo.label?
+          html`<p>${fo.label}</p>`:
+          html`<p>${fo.name}</p>`
+        }
+
+        </paper-item>
+        `)
+      }
+
+      Fichiers (${this.folder.files.length})
+
+      ${this.folder.files.map((fi) => html`
+        <paper-item raised @click="${(e) =>  this._onSelect(fi.url)}" >
+        ${fi.label?
+          html`<p>${fi.label}</p>`:
+          html`<p>${fi.name}</p>`
+        }
+        </paper-item>
+        `)
+      }
+
+
+
+      `:
+      html`<p>Saisissez une url & Cliquez sur "Explore"</p>`}
+
+      ${this.file.url?
+        html`
+        <hr>
+        <h4>  ${this.file.url}</h4>
+        <small>
+        ${this.file.body}
+        </small>
+        `:
+        html`<p><!--Cliquez sur "Explorer"--></p>`}
+
+
+
+        </p>
+        </div>
+        <solid-utils>Outils Chargement</solid-utils>
+        `;
+      }
+
+      constructor() {
+        super();
+        this.url = "https://holacratie.solid.community/public/"
+        this.data = ["one","two","three","four","five","six","seven","huit","neuf"]
+        this.agentGrid = new GridAgent("agentGrid", this);
+        console.log(this.agentGrid);
+        this.folder = {};
+        this.file = {};
+      }
+
+      firstUpdated() {
+        this.shadowRoot.getElementById("url_input").value = this.url;
+        this._onUrlChange();
+        //this.name = this.destinataire+"_Input"
+
+        //  this.agentLogin.send('agentApp', {type: 'dispo', name: 'agentLogin' });
+        //  console.log("DESTINATAIRE2:",this.destinataire);
+      }
+
+      _onUrlChange(){
+        this.url = this.shadowRoot.getElementById("url_input").value;
+        console.log(this.url)
+        this.agentGrid.send('agentSolid', {type: 'explore', url: this.url });
+      }
+      _onSelect(url){
+        console.log("select",url)
+        this.shadowRoot.getElementById("url_input").value = url;
+        this._onUrlChange();
+      }
+
+      _onNouveau(){
+
+      }
+      _onRecherche(){
+
+      }
+      exploreReponse(reponse, status){
+        switch (status) {
+          case 'erreur':
+          alert(reponse)
+          break;
+          case 'folder':
+
+          this.folder = reponse;
+          console.log(this.folder)
+          break;
+          case 'file':
+          this.file = reponse;
+          console.log(this.file)
+          break;
+          default:
+          alert ("Impossible d'exploiter la réponse : ",status, reponse)
+          //  console.log('Sorry, we are out of ' + expr + '.');
+        }
+      }
     }
 
-    constructor() {
-      super();
-      this.clicks = 0;
-      this.value = 0;
-      this.data = ["one","two","three","four","five","six","seven","huit","neuf"]
-    }
-
-    _onIncrement() {
-      this.value++;
-      this.clicks++;
-      this.dispatchEvent(new CustomEvent('counter-incremented'));
-    }
-
-    _onDecrement() {
-      this.value--;
-      this.clicks++;
-      this.dispatchEvent(new CustomEvent('counter-decremented'));
-    }
-  }
-
-  window.customElements.define('spoggy-grid', SpoggyGrid);
+    window.customElements.define('spoggy-grid', SpoggyGrid);

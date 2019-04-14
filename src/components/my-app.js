@@ -23,6 +23,7 @@ import '@polymer/app-layout/app-toolbar/app-toolbar.js';
 import { menuIcon } from './my-icons.js';
 import './snack-bar.js';
 
+
 class MyApp extends LitElement {
   static get properties() {
     return {
