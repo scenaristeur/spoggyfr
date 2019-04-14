@@ -34,7 +34,7 @@ class SpoggyVis extends LitElement {
     */
     return html`
     ${GraphStyles}
-    <link rel="stylesheet" href="src/components/graphe/vis/vis.css">
+    <link rel="stylesheet" href="/src/components/graphe/vis/vis.css">
     <style>
     #mynetwork {
       top: 0;
