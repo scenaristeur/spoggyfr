@@ -63,7 +63,7 @@ export const GraphStyles = html`
     height: 30px;
     background-position: 20px 3px;
     background-repeat: no-repeat;
-    background-image: url("src/components/graphe/vis/img/network/cross.png");
+    background-image: url("https://cdn.jsdelivr.net/npm/vis@4.21.0/dist/img/network/cross.png");
     cursor: pointer;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
@@ -104,7 +104,7 @@ export const GraphStyles = html`
     box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.50);
   }
   div.vis-network div.vis-manipulation div.vis-button.vis-back {
-    background-image: url("src/components/graphe/vis/img/network/backIcon.png");
+    background-image: url("https://cdn.jsdelivr.net/npm/vis@4.21.0/dist/img/network/backIcon.png");
   }
   div.vis-network div.vis-manipulation div.vis-button.vis-none:hover {
     box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.0);
@@ -125,21 +125,21 @@ export const GraphStyles = html`
     color:white;
   }
   div.vis-network div.vis-manipulation div.vis-button.vis-add {
-    background-image: url("src/components/graphe/vis/img/network/addNodeIcon.png");
+    background-image: url("https://cdn.jsdelivr.net/npm/vis@4.21.0/dist/img/network/addNodeIcon.png");
   }
   div.vis-network div.vis-manipulation div.vis-button.vis-edit,
   div.vis-network div.vis-edit-mode div.vis-button.vis-edit {
-    background-image: url("src/components/graphe/vis/img/network/editIcon.png");
+    background-image: url("https://cdn.jsdelivr.net/npm/vis@4.21.0/dist/img/network/editIcon.png");
   }
   div.vis-network div.vis-edit-mode div.vis-button.vis-edit.vis-edit-mode {
     background-color: #fcfcfc;
     border: 1px solid #cccccc;
   }
   div.vis-network div.vis-manipulation div.vis-button.vis-connect {
-    background-image: url("src/components/graphe/vis/img/network/connectIcon.png");
+    background-image: url("https://cdn.jsdelivr.net/npm/vis@4.21.0/dist/img/network/connectIcon.png");
   }
   div.vis-network div.vis-manipulation div.vis-button.vis-delete {
-    background-image: url("src/components/graphe/vis/img/network/deleteIcon.png");
+    background-image: url("https://cdn.jsdelivr.net/npm/vis@4.21.0/dist/img/network/deleteIcon.png");
   }
   /* top right bottom left */
   div.vis-network div.vis-manipulation div.vis-label,
@@ -180,37 +180,37 @@ export const GraphStyles = html`
     box-shadow: 0 0 1px 3px rgba(56, 207, 21, 0.95);
   }
   div.vis-network div.vis-navigation div.vis-button.vis-up {
-    background-image: url("src/components/graphe/vis/img/network/upArrow.png");
+    background-image: url("https://cdn.jsdelivr.net/npm/vis@4.21.0/dist/img/network/upArrow.png");
     bottom:50px;
     left:55px;
   }
   div.vis-network div.vis-navigation div.vis-button.vis-down {
-    background-image: url("src/components/graphe/vis/img/network/downArrow.png");
+    background-image: url("https://cdn.jsdelivr.net/npm/vis@4.21.0/dist/img/network/downArrow.png");
     bottom:10px;
     left:55px;
   }
   div.vis-network div.vis-navigation div.vis-button.vis-left {
-    background-image: url("src/components/graphe/vis/img/network/leftArrow.png");
+    background-image: url("https://cdn.jsdelivr.net/npm/vis@4.21.0/dist/img/network/leftArrow.png");
     bottom:10px;
     left:15px;
   }
   div.vis-network div.vis-navigation div.vis-button.vis-right {
-    background-image: url("src/components/graphe/vis/img/network/rightArrow.png");
+    background-image: url("https://cdn.jsdelivr.net/npm/vis@4.21.0/dist/img/network/rightArrow.png");
     bottom:10px;
     left:95px;
   }
   div.vis-network div.vis-navigation div.vis-button.vis-zoomIn {
-    background-image: url("src/components/graphe/vis/img/network/plus.png");
+    background-image: url("https://cdn.jsdelivr.net/npm/vis@4.21.0/dist/img/network/plus.png");
     bottom:10px;
     right:15px;
   }
   div.vis-network div.vis-navigation div.vis-button.vis-zoomOut {
-    background-image: url("src/components/graphe/vis/img/network/minus.png");
+    background-image: url("https://cdn.jsdelivr.net/npm/vis@4.21.0/dist/img/network/minus.png");
     bottom:10px;
     right:55px;
   }
   div.vis-network div.vis-navigation div.vis-button.vis-zoomExtends {
-    background-image: url("src/components/graphe/vis/img/network/zoomExtends.png");
+    background-image: url("https://cdn.jsdelivr.net/npm/vis@4.21.0/dist/img/network/zoomExtends.png");
     bottom:50px;
     right:15px;
   }
