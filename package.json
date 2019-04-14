@@ -29,7 +29,7 @@
     "@polymer/paper-dialog": "^3.0.1",
     "@polymer/paper-input": "^3.0.2",
     "@polymer/polymer": "^3.1.0",
-    "@webcomponents/webcomponentsjs": "^2.2.4",
+    "@webcomponents/webcomponentsjs": "^2.2.8",
     "browserify": "^16.2.3",
     "evejs": "github:scenaristeur/evejs",
     "lit-element": "^2.0.1",
@@ -52,7 +52,7 @@
     "polymer-cli": "^1.9.8",
     "polyserve": "^0.27.0",
     "prpl-server": "^1.4.0",
-    "puppeteer": "^1.5.0",
+    "puppeteer": "^1.14.0",
     "wct-mocha": "^1.0.0"
   }
 }
