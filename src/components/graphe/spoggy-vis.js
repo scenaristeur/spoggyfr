@@ -3,7 +3,8 @@
 * and TypeScript decorators
 **/
 import {  LitElement, html,} from 'lit-element';
-import '/node_modules/vis/dist/vis-network.min.js';
+//import '/node_modules/vis/dist/vis-network.min.js';
+import './lib/vis-network.min.js';
 import  '/node_modules/evejs/dist/eve.custom.js';
 import { VisAgent } from './agents/VisAgent.js'
 import { GraphStyles } from './graph-styles.js';
