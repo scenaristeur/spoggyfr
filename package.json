@@ -11,6 +11,7 @@
     "build": "polymer build --auto-base-path && gulp prpl-server",
     "build:static": "polymer build",
     "build:static_es5": "polymer build --preset es5-bundled",
+    "build:static_es5_v": "polymer build --preset es5-bundled -v",
     "serve": "prpl-server --root server/build",
     "serve:static": "polymer serve --port 5000 build/es5-bundled",
     "test": "npm run test:unit && npm run test:integration",
