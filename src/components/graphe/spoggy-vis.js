@@ -4,7 +4,7 @@
 **/
 import {  LitElement, html,} from 'lit-element';
 //import '/node_modules/vis/dist/vis-network.min.js';
-import './vis/vis.js';
+import './vis/vis.min.js';
 import  '/node_modules/evejs/dist/eve.custom.js';
 import { VisAgent } from './agents/VisAgent.js'
 import { GraphStyles } from './graph-styles.js';
@@ -34,7 +34,7 @@ class SpoggyVis extends LitElement {
     */
     return html`
     ${GraphStyles}
-    <link rel="stylesheet" href="/src/components/graphe/vis/vis.css">
+    <link rel="stylesheet" href="/src/components/graphe/vis/vis.min.css">
     <style>
     #mynetwork {
       top: 0;
