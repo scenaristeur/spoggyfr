@@ -1,3 +1,4 @@
+//https://npm-demos.appspot.com/@polymer/iron-icons@3.0.1/demo/index.html
 import { LitElement, html, css } from 'lit-element';
 import '@polymer/paper-input/paper-input.js';
 import '@polymer/paper-button/paper-button.js';
@@ -9,6 +10,8 @@ import '@polymer/iron-icon/iron-icon.js';
 import '@polymer/iron-icons/iron-icons.js';
 import '@polymer/iron-icons/social-icons.js';
 import '@polymer/iron-collapse/iron-collapse.js';
+import '@polymer/paper-icon-button/paper-icon-button.js';
+import '@polymer/paper-toggle-button/paper-toggle-button.js';
 
 
 class SpoggyGrid extends LitElement {
@@ -17,66 +20,70 @@ class SpoggyGrid extends LitElement {
       url: String,
       data: Array,
       folder: Object,
-      file: Object
+      file: Object,
+      sources: Array
     }
   }
 
+
+
   render() {
+    // TEMPLATES
+    const itemTemplate = (item) => html`
+    <paper-item>
+    <span @click="${(e) => this._onSelect(item.url)}">
+    ${item.label?
+      html`<p>${item.label}</p>`:
+      html`<p>${item.name}</p>`
+    }
+    </span>
+    <div style="margin-left:auto; margin-right:0;">
+    <a href="${item.url}" title="Open ${item.url}" target="_blank"><paper-icon-button
+    src="./assets/solid.png"
+    class="blue"
+    alt="open"
+    title="Open on POD / Ouvrir sur le POD"></paper-icon-button></a>
+    <paper-icon-button on-tap="_share" disabled title="Share ${item.url}" icon="social:share"></paper-icon-button>
+    <paper-icon-button on-tap="_copylink" disabled title="Copy link ${item.url}" icon="icons:link"></paper-icon-button>
+    </div>
+    </paper-item>
+    `;
+
+    // FIN TEMPLATES
     return html`
-
-
-
+    <style>
+    paper-icon-button.blue {
+      --paper-icon-button-ink-color: var(--paper-orange-500);
+      background-color: var(--paper-light-blue-500);
+      color: white;
+      border-radius: 3px;
+      padding: 5px;
+    }
+    </style>
+    <paper-toggle-button id="bascule" checked @click="${(e) => this._onBascule(e)}" >smag0 / holacratie</paper-toggle-button>
     <div>
     <p>
     <paper-input id="url_input"></paper-input>
-    <paper-button raised @click="${this._onUrlChange}">Explore</paper-button>
-    <paper-button raised @click="${this._onNouveau}">Nouveau</paper-button>
-    <paper-button raised @click="${this._onRecherche}">Recherche</paper-button>
-
-
-
-
-
-
+    <paper-icon-button  icon="icons:search" class="blue" title="Explore" raised @click="${this._onUrlChange}"></paper-icon-button>
+    <paper-icon-button  icon="icons:create"  disabled title="New file / Nouveau fichier" raised @click="${this._onNouveau}"></paper-icon-button>
+    <paper-icon-button  icon="icons:create-new-folder"  disabled title="New folder / Nouveau dossier" raised @click="${this._onNouveau}"></paper-icon-button>
 
     ${this.folder.name?
       html`
 
       <hr>
-      <paper-button raised @click="${(e) =>  this._onSelect(this.folder.url)}">
-      ${this.folder.name}
-      </paper-button>
-
-
-      <paper-button class="green" raised @click="${(e) =>  this._onSelect(this.folder.parent)}">
-      Parent : ${this.folder.parent}
-      </paper-button>
-      <hr>
-
 
       <div id="trigger" @click="${(e) =>  this.toggle("folder_collapse")}">
-      <slot name="collapse-trigger">Dossiers / Folders (${this.folder.folders.length})</slot>
+      <slot name="collapse-trigger"> ${this.folder.folders.length} Dossiers / Folders</slot>
       <!--  <iron-icon icon="[[_toggle(opened, collapseIcon, expandIcon)]]" hidden$="[[noIcons]]"></iron-icon> -->
-      <iron-icon id="folder_collapse_icon" icon="${this.isOpen("folder_collapse")}" hidden$="[[noIcons]]"></iron-icon>
+      <paper-icon-button id="folder_collapse_icon" icon="icons:expand-more" class="blue" ></paper-icon-button>
 
       </div>
       <iron-collapse id="folder_collapse" horizontal="[[horizontal]]" no-animation="[[noAnimation]]">
       <slot name="collapse-content">
+      ${this.parentTemplate}
       ${this.folder.folders.map((fo) => html`
-        <paper-item>
-        <span @click="${(e) =>  this._onSelect(fo.url)}">
-        ${fo.label?
-          html`<p>${fo.label}</p>`:
-          html`<p>${fo.name}</p>`
-        }
-        </span>
-        <a href="${fo.url}" title="Open ${fo.url}" target="_blank">
-        <img width="24px" height="24px" src="./assets/solid.png" />
-        </a>
-        &nbsp;
-        <iron-icon on-tap="_share" title="Share ${fo.url}" icon="social:share"></iron-icon>&nbsp;
-        <iron-icon on-tap="_copylink" title="Copy link ${fo.url}" icon="icons:link"></iron-icon>
-        </paper-item>
+        ${itemTemplate(fo)}
 
         `)
       }
@@ -84,38 +91,27 @@ class SpoggyGrid extends LitElement {
       </iron-collapse>
 
 
-
-
-
-
-
-
       <hr>
-      Fichiers (${this.folder.files.length})
 
+
+      <div id="trigger2" @click="${(e) =>  this.toggle("files_collapse")}">
+      <slot name="collapse-trigger"> ${this.folder.files.length} Fichiers / Files</slot>
+      <!--  <iron-icon icon="[[_toggle(opened, collapseIcon, expandIcon)]]" hidden$="[[noIcons]]"></iron-icon> -->
+      <paper-icon-button id="files_collapse_icon" icon="icons:expand-more" class="blue" ></paper-icon-button>
+
+      </div>
+      <iron-collapse id="files_collapse" horizontal="[[horizontal]]" no-animation="[[noAnimation]]">
+      <slot name="collapse-content2">
+      ${this.parentTemplate}
       ${this.folder.files.map((fi) => html`
-        <paper-item raised @click="${(e) =>  this._onSelect(fi.url)}" >
-        <span @click="${(e) =>  this._onSelect(fi.url)}">
-        ${fi.label?
-          html`<p>${fi.label}</p>`:
-          html`<p>${fi.name}</p>`
-        }
-        </span>
-        <a href="${fi.url}" title="Open ${fi.url}" target="_blank">
-        <img width="24px" height="24px" src="./assets/solid.png" />
-        </a>
-        &nbsp;
-        <iron-icon on-tap="_share" title="Share ${fi.url}" icon="social:share"></iron-icon>&nbsp;
-        <iron-icon on-tap="_copylink" title="Copy link ${fi.url}" icon="icons:link"></iron-icon>
-
-        </paper-item>
+        ${itemTemplate(fi)}
         `)
       }
-
-
+      </slot>
+      </iron-collapse>
 
       `:
-      html`<p>Saisissez une url & Cliquez sur "Explore"</p>`}
+      html`${this.parentTemplate}`}
 
       ${this.file.url?
         html`
@@ -127,8 +123,6 @@ class SpoggyGrid extends LitElement {
         `:
         html`<p><!--Cliquez sur "Explorer"--></p>`}
 
-
-
         </p>
         </div>
         <solid-utils>Outils Chargement</solid-utils>
@@ -137,10 +131,11 @@ class SpoggyGrid extends LitElement {
 
       constructor() {
         super();
-        this.url = "https://holacratie.solid.community/public/"
+        this.sources = ["https://holacratie.solid.community/public/", "https://smag0.solid.community/public/"]
+        this.url = this.sources[0];
         this.data = ["one","two","three","four","five","six","seven","huit","neuf"]
         this.agentGrid = new GridAgent("agentGrid", this);
-        console.log(this.agentGrid);
+        //console.log(this.agentGrid);
         this.folder = {};
         this.file = {};
       }
@@ -148,10 +143,6 @@ class SpoggyGrid extends LitElement {
       firstUpdated() {
         this.shadowRoot.getElementById("url_input").value = this.url;
         this._onUrlChange();
-        //this.name = this.destinataire+"_Input"
-
-        //  this.agentLogin.send('agentApp', {type: 'dispo', name: 'agentLogin' });
-        //  console.log("DESTINATAIRE2:",this.destinataire);
       }
 
       _onUrlChange(){
@@ -171,13 +162,20 @@ class SpoggyGrid extends LitElement {
       _onRecherche(){
 
       }
+      _onBascule(){
+        console.log(this.shadowRoot.getElementById("bascule").checked);
+        var url = "";
+        if (this.shadowRoot.getElementById("bascule").checked){
+          url = this.sources[0]
+        }else{
+          url = this.sources[1]
+        }
+        this.shadowRoot.getElementById("url_input").value = url;
+        this._onUrlChange();
+      }
       exploreReponse(reponse, status){
         switch (status) {
-          case 'erreur':
-          alert(reponse)
-          break;
           case 'folder':
-
           this.folder = reponse;
           console.log(this.folder)
           break;
@@ -187,30 +185,33 @@ class SpoggyGrid extends LitElement {
           break;
           default:
           alert ("Impossible d'exploiter la réponse : ",status, reponse)
-          //  console.log('Sorry, we are out of ' + expr + '.');
         }
       }
 
       toggle(which) {
-        console.log("toggl",which)
         var which_icon = which+"_icon";
         this.shadowRoot.getElementById(which).toggle();
-console.log(this.shadowRoot.getElementById(which_icon).icon)
-if(this.shadowRoot.getElementById(which).opened){
-  this.shadowRoot.getElementById(which_icon).icon =  "icons:expand-less"
-}else{
-  this.shadowRoot.getElementById(which_icon).icon =  "icons:expand-more";
-}
-      }
-
-      isOpen(which){
-        if (this.shadowRoot.getElementById(which)){
-          console.log(this.shadowRoot.getElementById(which).opened);
-
-
+        if(this.shadowRoot.getElementById(which).opened){
+          this.shadowRoot.getElementById(which_icon).icon =  "icons:expand-less"
         }else{
-          return "icons:expand-more";
+          this.shadowRoot.getElementById(which_icon).icon =  "icons:expand-more";
         }
       }
+
+      // TEmplates
+
+      get parentTemplate() {
+        return html`
+        <paper-item raised @click="${(e) =>  this._onSelect(this.folder.parent)}">&nbsp;
+        <paper-icon-button icon="icons:arrow-upward" class="blue"></paper-icon-button>
+        ${this.folder.parent}
+        </paper-item>`;
+      }
+
+
+
+
+
+
     }
     window.customElements.define('spoggy-grid', SpoggyGrid);
