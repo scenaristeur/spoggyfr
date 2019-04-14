@@ -4,7 +4,7 @@
 **/
 import {  LitElement, html,} from 'lit-element';
 //import '/node_modules/vis/dist/vis-network.min.js';
-import '/node_modules/dist/vis/vis.js';
+import '/node_modules/vis/dist/vis.js';
 import  '/node_modules/evejs/dist/eve.custom.js';
 import { VisAgent } from './agents/VisAgent.js'
 import { GraphStyles } from './graph-styles.js';
