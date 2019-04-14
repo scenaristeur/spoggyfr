@@ -37,3 +37,9 @@ This template has the same UI elements as the `master` one (`app-layout` element
 - [x] Setup Safari testing on Travis.
 - [x] Deploy all templates as demos.
 - [ ] Update to latest [Material Web Components](https://github.com/material-components/material-components-web-components).
+
+
+# CDNJS
+https://www.jsdelivr.com/package/npm/vis?tab=collection
+https://cdnjs.com/libraries/vis
+https://www.jsdelivr.com/package/npm/@polymer/polymer
