@@ -5,6 +5,10 @@ import '@polymer/paper-item/paper-item.js';
 import './solid-utils';
 import  '/node_modules/evejs/dist/eve.custom.js';
 import { GridAgent } from '../agents/GridAgent.js'
+import '@polymer/iron-icon/iron-icon.js';
+import '@polymer/iron-icons/iron-icons.js';
+import '@polymer/iron-icons/social-icons.js';
+import '@polymer/iron-collapse/iron-collapse.js';
 
 
 class SpoggyGrid extends LitElement {
@@ -19,6 +23,9 @@ class SpoggyGrid extends LitElement {
 
   render() {
     return html`
+
+
+
     <div>
     <p>
     <paper-input id="url_input"></paper-input>
@@ -27,41 +34,80 @@ class SpoggyGrid extends LitElement {
     <paper-button raised @click="${this._onRecherche}">Recherche</paper-button>
 
 
+
+
+
+
+
     ${this.folder.name?
       html`
+
+      <hr>
+      <paper-button raised @click="${(e) =>  this._onSelect(this.folder.url)}">
+      ${this.folder.name}
+      </paper-button>
+
+
+      <paper-button class="green" raised @click="${(e) =>  this._onSelect(this.folder.parent)}">
+      Parent : ${this.folder.parent}
+      </paper-button>
       <hr>
 
-      <paper-item @click="${(e) =>  this._onSelect(this.folder.url)}">
-      <h4>${this.folder.name}</h4>
-      </paper-item>
 
+      <div id="trigger" @click="${(e) =>  this.toggle("folder_collapse")}">
+      <slot name="collapse-trigger">Dossiers / Folders (${this.folder.folders.length})</slot>
+      <!--  <iron-icon icon="[[_toggle(opened, collapseIcon, expandIcon)]]" hidden$="[[noIcons]]"></iron-icon> -->
+      <iron-icon id="folder_collapse_icon" icon="${this.isOpen("folder_collapse")}" hidden$="[[noIcons]]"></iron-icon>
 
-      <paper-item @click="${(e) =>  this._onSelect(this.folder.parent)}">
-      <small>  Parent : ${this.folder.parent}</small>
-      </paper-item>
-
-      Dossiers (${this.folder.folders.length})
-
+      </div>
+      <iron-collapse id="folder_collapse" horizontal="[[horizontal]]" no-animation="[[noAnimation]]">
+      <slot name="collapse-content">
       ${this.folder.folders.map((fo) => html`
-        <paper-item @click="${(e) =>  this._onSelect(fo.url)}" >
-
+        <paper-item>
+        <span @click="${(e) =>  this._onSelect(fo.url)}">
         ${fo.label?
           html`<p>${fo.label}</p>`:
           html`<p>${fo.name}</p>`
         }
-
+        </span>
+        <a href="${fo.url}" title="Open ${fo.url}" target="_blank">
+        <img width="24px" height="24px" src="./assets/solid.png" />
+        </a>
+        &nbsp;
+        <iron-icon on-tap="_share" title="Share ${fo.url}" icon="social:share"></iron-icon>&nbsp;
+        <iron-icon on-tap="_copylink" title="Copy link ${fo.url}" icon="icons:link"></iron-icon>
         </paper-item>
+
         `)
       }
+      </slot>
+      </iron-collapse>
 
+
+
+
+
+
+
+
+      <hr>
       Fichiers (${this.folder.files.length})
 
       ${this.folder.files.map((fi) => html`
         <paper-item raised @click="${(e) =>  this._onSelect(fi.url)}" >
+        <span @click="${(e) =>  this._onSelect(fi.url)}">
         ${fi.label?
           html`<p>${fi.label}</p>`:
           html`<p>${fi.name}</p>`
         }
+        </span>
+        <a href="${fi.url}" title="Open ${fi.url}" target="_blank">
+        <img width="24px" height="24px" src="./assets/solid.png" />
+        </a>
+        &nbsp;
+        <iron-icon on-tap="_share" title="Share ${fi.url}" icon="social:share"></iron-icon>&nbsp;
+        <iron-icon on-tap="_copylink" title="Copy link ${fi.url}" icon="icons:link"></iron-icon>
+
         </paper-item>
         `)
       }
@@ -144,6 +190,27 @@ class SpoggyGrid extends LitElement {
           //  console.log('Sorry, we are out of ' + expr + '.');
         }
       }
-    }
 
+      toggle(which) {
+        console.log("toggl",which)
+        var which_icon = which+"_icon";
+        this.shadowRoot.getElementById(which).toggle();
+console.log(this.shadowRoot.getElementById(which_icon).icon)
+if(this.shadowRoot.getElementById(which).opened){
+  this.shadowRoot.getElementById(which_icon).icon =  "icons:expand-less"
+}else{
+  this.shadowRoot.getElementById(which_icon).icon =  "icons:expand-more";
+}
+      }
+
+      isOpen(which){
+        if (this.shadowRoot.getElementById(which)){
+          console.log(this.shadowRoot.getElementById(which).opened);
+
+
+        }else{
+          return "icons:expand-more";
+        }
+      }
+    }
     window.customElements.define('spoggy-grid', SpoggyGrid);

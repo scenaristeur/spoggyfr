@@ -194,8 +194,6 @@ class MyApp extends LitElement {
     <!-- This gets hidden on a small screen-->
     <nav class="toolbar-list">
     <a ?selected="${this._page === 'view1'}" href="/view1">Accueil</a>
-    <a ?selected="${this._page === 'view2'}" href="/view2">Sarl Api</a>
-    <a ?selected="${this._page === 'view3'}" href="/view3">View Three</a>
     <a ?selected="${this._page === 'view4'}" href="/view4">Graphe</a>
     <a ?selected="${this._page === 'view5'}" href="/view5">Mon compte</a>
     </nav>
@@ -207,8 +205,6 @@ class MyApp extends LitElement {
     @opened-changed="${this._drawerOpenedChanged}">
     <nav class="drawer-list">
     <a ?selected="${this._page === 'view1'}" href="/view1">Accueil</a>
-    <a ?selected="${this._page === 'view2'}" href="/view2">Sarl Api</a>
-    <a ?selected="${this._page === 'view3'}" href="/view3">View Three</a>
     <a ?selected="${this._page === 'view4'}" href="/view4">Graphe</a>
     <a ?selected="${this._page === 'view5'}" href="/view5">Mon compte</a>
     </nav>
@@ -217,8 +213,6 @@ class MyApp extends LitElement {
     <!-- Main content -->
     <main role="main" class="main-content">
     <my-view1 class="page" ?active="${this._page === 'view1'}"></my-view1>
-    <my-view2 class="page" ?active="${this._page === 'view2'}"></my-view2>
-    <my-view3 class="page" ?active="${this._page === 'view3'}"></my-view3>
     <my-view4 class="page" ?active="${this._page === 'view4'}">Le premier chargement du graphe peut être long...</my-view4>
     <my-view5 class="page" ?active="${this._page === 'view5'}"></my-view5>
     <my-view404 class="page" ?active="${this._page === 'view404'}"></my-view404>
@@ -303,12 +297,6 @@ class MyApp extends LitElement {
         // Put code in here that you want to run every time when
         // navigating to view1 after my-view1.js is loaded.
       });
-      break;
-      case 'view2':
-      import('../components/my-view2.js');
-      break;
-      case 'view3':
-      import('../components/my-view3.js');
       break;
       case 'view4':
       import('../components/my-view4.js');
