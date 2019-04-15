@@ -38,7 +38,8 @@ class SpoggyGrid extends LitElement {
     }
     </span>
     <div style="margin-left:auto; margin-right:0;">
-    <a href="${item.url}" title="Open ${item.url}" target="_blank"><paper-icon-button
+    <a href="${item.url}" title="Open ${item.url}" target="_blank">
+    <paper-icon-button
     src="./assets/solid.png"
     class="blue"
     alt="open"
@@ -125,6 +126,7 @@ class SpoggyGrid extends LitElement {
 
         </p>
         </div>
+        <img id="cpt" src="" border="0" title="compteur de site" alt="compteur de visites">
         <solid-utils>Outils Chargement</solid-utils>
         `;
       }
@@ -138,11 +140,19 @@ class SpoggyGrid extends LitElement {
         //console.log(this.agentGrid);
         this.folder = {};
         this.file = {};
+
       }
 
       firstUpdated() {
         this.shadowRoot.getElementById("url_input").value = this.url;
         this._onUrlChange();
+        if (window.location.hostname != "127.0.0.1"){
+          console.log(window.location.hostname);
+          this.shadowRoot.getElementById("cpt").src="https://counter10.allfreecounter.com/private/compteurdevisite.php?c=kap2qgssr21ur788587am4dra6chp35n";
+        }else{
+          console.log(window.location.hostname);
+          this.shadowRoot.getElementById("cpt").src = "";
+        }
       }
 
       _onUrlChange(){

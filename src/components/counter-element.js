@@ -60,6 +60,15 @@ class CounterElement extends LitElement {
     super();
     this.clicks = 0;
     this.value = 0;
+    // <img id="cpt" src="" border="0" title="compteur de site" alt="compteur de visites">
+    /*  if (window.location.hostname != "127.0.0.1"){
+    console.log(window.location.hostname);
+    this.$.cpt.src="https://counter10.allfreecounter.com/private/compteurdevisite.php?c=kap2qgssr21ur788587am4dra6chp35n";
+  }else{
+    console.log(window.location.hostname);
+    this.$.cpt.src = "/doc/spoggy_ncc_vue3.png";
+  }
+  */
   }
 
   _onIncrement() {
