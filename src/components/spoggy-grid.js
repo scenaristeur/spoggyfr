@@ -1,4 +1,5 @@
 //https://npm-demos.appspot.com/@polymer/iron-icons@3.0.1/demo/index.html
+//https://www.materialpalette.com/icons
 import { LitElement, html, css } from 'lit-element';
 import '@polymer/paper-input/paper-input.js';
 import '@polymer/paper-button/paper-button.js';
@@ -31,16 +32,22 @@ class SpoggyGrid extends LitElement {
     // TEMPLATES
     const itemTemplate = (item) => html`
     <paper-item>
-    <span @click="${(e) => this._onSelect(item.url)}">
+    <paper-icon-button
+    src="../../images/${item.type}.png"
+    title="${item.type}"
+    @click="${(e) => this._onSelect(item.url)}">
+    </paper-icon-button>
+    <div @click="${(e) => this._onSelect(item.url)}">
+
     ${item.label?
       html`<p>${item.label}</p>`:
       html`<p>${item.name}</p>`
     }
-    </span>
-    <div style="margin-left:auto; margin-right:0;">
+    </div>
+    <div class="lightblue" style="margin-left:auto; margin-right:0;">
     <a href="${item.url}" title="Open ${item.url}" target="_blank">
     <paper-icon-button
-    src="./assets/solid.png"
+    src="../../images/solid.png"
     class="blue"
     alt="open"
     title="Open on POD / Ouvrir sur le POD"></paper-icon-button></a>
@@ -58,23 +65,32 @@ class SpoggyGrid extends LitElement {
       background-color: var(--paper-light-blue-500);
       color: white;
       border-radius: 3px;
-      padding: 5px;
+
+    }
+
+    div.lightblue {
+      --paper-icon-button-ink-color: var(--paper-orange-500);
+      background-color: var(--paper-light-blue-100);
+      color: var(--paper-deep-orange-400);
+      border-radius: 3px;
+      margin: 1px;
     }
     </style>
     <paper-toggle-button id="bascule" checked @click="${(e) => this._onBascule(e)}" >smag0 / holacratie</paper-toggle-button>
     <div>
     <p>
     <paper-input id="url_input"></paper-input>
+    <div class="lightblue">
     <paper-icon-button  icon="icons:search" class="blue" title="Explore" raised @click="${this._onUrlChange}"></paper-icon-button>
     <paper-icon-button  icon="icons:create"  disabled title="New file / Nouveau fichier" raised @click="${this._onNouveau}"></paper-icon-button>
     <paper-icon-button  icon="icons:create-new-folder"  disabled title="New folder / Nouveau dossier" raised @click="${this._onNouveau}"></paper-icon-button>
-
+</div>
     ${this.folder.name?
       html`
 
       <hr>
 
-      <div id="trigger" @click="${(e) =>  this.toggle("folder_collapse")}">
+      <div id="trigger" class="lightblue" @click="${(e) =>  this.toggle("folder_collapse")}">
       <slot name="collapse-trigger"> ${this.folder.folders.length} Dossiers / Folders</slot>
       <!--  <iron-icon icon="[[_toggle(opened, collapseIcon, expandIcon)]]" hidden$="[[noIcons]]"></iron-icon> -->
       <paper-icon-button id="folder_collapse_icon" icon="icons:expand-more" class="blue" ></paper-icon-button>
@@ -95,7 +111,7 @@ class SpoggyGrid extends LitElement {
       <hr>
 
 
-      <div id="trigger2" @click="${(e) =>  this.toggle("files_collapse")}">
+      <div id="trigger2" class="lightblue" @click="${(e) =>  this.toggle("files_collapse")}">
       <slot name="collapse-trigger"> ${this.folder.files.length} Fichiers / Files</slot>
       <!--  <iron-icon icon="[[_toggle(opened, collapseIcon, expandIcon)]]" hidden$="[[noIcons]]"></iron-icon> -->
       <paper-icon-button id="files_collapse_icon" icon="icons:expand-more" class="blue" ></paper-icon-button>
@@ -143,9 +159,12 @@ class SpoggyGrid extends LitElement {
 
       }
 
+
+
+
       firstUpdated() {
         this.shadowRoot.getElementById("url_input").value = this.url;
-        this._onUrlChange();
+        //  this._onUrlChange();
         if (window.location.hostname != "127.0.0.1"){
           console.log(window.location.hostname);
           this.shadowRoot.getElementById("cpt").src="https://counter10.allfreecounter.com/private/compteurdevisite.php?c=kap2qgssr21ur788587am4dra6chp35n";
@@ -153,6 +172,7 @@ class SpoggyGrid extends LitElement {
           console.log(window.location.hostname);
           this.shadowRoot.getElementById("cpt").src = "";
         }
+        console.log("TERMINE 1")
       }
 
       _onUrlChange(){
@@ -213,8 +233,10 @@ class SpoggyGrid extends LitElement {
       get parentTemplate() {
         return html`
         <paper-item raised @click="${(e) =>  this._onSelect(this.folder.parent)}">&nbsp;
+        <div class="lightblue">
         <paper-icon-button icon="icons:arrow-upward" class="blue"></paper-icon-button>
         ${this.folder.parent}
+        </div>
         </paper-item>`;
       }
 
