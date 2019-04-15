@@ -237,7 +237,7 @@ class SpoggyVis extends LitElement {
 
     fileChanged(current){
 
-      console.log(current);
+      console.log("#################\n",current);
 
       if(current.type == "application/json"){
         this.parseJson(current)
@@ -366,7 +366,7 @@ forceDirection: "none"
 app.network.setOptions(options);
 console.log("NETWORK2",app.network)*/
 nodes.forEach(function(n){
-  console.log(n)
+  //console.log(n)
   app.addNodeIfNotExist(app.network, n);
 });
 app.network.body.data.edges.update(edges)

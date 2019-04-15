@@ -84,10 +84,11 @@ class SolidGraph extends LitElement {
     console.log(current)
     this.current = current;
     this.agentGraph.send('agentVis', {type: 'clear' });
-    if (this.current.type == "folder"){
+    if (this.current.status == "folder"){
       this.folder2vis(this.current)
     }else {
-      this.file2vis(this.current)
+      console.log("INTEGRATION DU FICHIER")
+    //  this.file2vis(this.current)
     }
   }
 

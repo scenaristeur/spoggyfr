@@ -70,10 +70,10 @@ class SolidUtils extends LitElement {
           this.agentSolid.send(sender, {type: 'exploreReponse', reponse: err, status: "erreur" });
         } );
 
-        this.fileClient.fetchAndParse(url, 'text/turtle').then(graph => {
+        /*this.fileClient.fetchAndParse(url, 'text/turtle').then(graph => {
           console.log("GRAPH",graph)
           //let something = graph.any(someSubject, somePredicate);
-        }, err => console.log(err) );
+        }, err => console.log(err) );*/
 
       }
     }

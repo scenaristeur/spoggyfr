@@ -13,7 +13,7 @@ import { PageViewElement } from './page-view-element.js';
 
 // These are the shared styles needed by this element.
 import { SharedStyles } from './shared-styles.js';
-import  './graphe/solid-graph.js';
+
 
 class MyView4 extends PageViewElement {
   static get styles() {
@@ -25,7 +25,7 @@ class MyView4 extends PageViewElement {
   render() {
     return html`
     <section>
-    <solid-graph></solid-graph>
+
     </section>
     `;
   }

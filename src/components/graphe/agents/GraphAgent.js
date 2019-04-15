@@ -48,10 +48,6 @@ GraphAgent.prototype.receive = function(from, message) {
     console.log("nodeChanged", message.node);
     this.app.nodeChanged(message.node);
     break;
-
-
-
-
     default:
     console.log(message);
   }

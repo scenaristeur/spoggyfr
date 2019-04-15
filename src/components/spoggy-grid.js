@@ -156,9 +156,7 @@ class SpoggyGrid extends LitElement {
         //console.log(this.agentGrid);
         this.folder = {};
         this.file = {};
-
       }
-
 
 
 
@@ -204,9 +202,11 @@ class SpoggyGrid extends LitElement {
         this._onUrlChange();
       }
       exploreReponse(reponse, status){
+        console.log("|||||||||||||||||||||||\nREPONSE :",reponse)
         switch (status) {
           case 'folder':
           this.folder = reponse;
+          this.agentGrid.send('agentGraph', {type: 'currentChanged', current: reponse });
           console.log(this.folder)
           break;
           case 'file':
