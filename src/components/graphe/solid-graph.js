@@ -88,7 +88,7 @@ class SolidGraph extends LitElement {
       this.folder2vis(this.current)
     }else {
       console.log("INTEGRATION DU FICHIER")
-    //  this.file2vis(this.current)
+      this.file2vis(this.current)
     }
   }
 
