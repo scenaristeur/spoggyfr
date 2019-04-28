@@ -14,6 +14,9 @@ import '@polymer/iron-icons/social-icons.js';
 import '@polymer/iron-collapse/iron-collapse.js';
 import '@polymer/paper-icon-button/paper-icon-button.js';
 import '@polymer/paper-toggle-button/paper-toggle-button.js';
+import '@vaadin/vaadin-split-layout/vaadin-split-layout.js';
+import  './graphe/solid-graph.js';
+import '@granite-elements/ace-widget/ace-widget.js';
 
 
 class SpoggyGrid extends LitElement {
@@ -77,6 +80,11 @@ class SpoggyGrid extends LitElement {
       margin: 1px;
     }
     </style>
+
+
+
+    <vaadin-split-layout >
+    <div>
     <paper-toggle-button id="bascule" checked @click="${(e) => this._onBascule(e)}" >smag0 / holacratie</paper-toggle-button>
     <div>
     <p>
@@ -85,7 +93,7 @@ class SpoggyGrid extends LitElement {
     <paper-icon-button  icon="icons:search" class="blue" title="Explore" raised @click="${this._onUrlChange}"></paper-icon-button>
     <paper-icon-button  icon="icons:create"  disabled title="New file / Nouveau fichier" raised @click="${this._onNouveau}"></paper-icon-button>
     <paper-icon-button  icon="icons:create-new-folder"  disabled title="New folder / Nouveau dossier" raised @click="${this._onNouveau}"></paper-icon-button>
-</div>
+    </div>
     ${this.folder.name?
       html`
 
@@ -102,149 +110,176 @@ class SpoggyGrid extends LitElement {
       ${this.parentTemplate}
       ${this.folder.folders.map((fo) => html`
         ${itemTemplate(fo)}
-
-        `)
-      }
-      </slot>
-      </iron-collapse>
+        `)}
+        </slot>
+        </iron-collapse>
 
 
-      <hr>
-
-
-      <div id="trigger2" class="lightblue" @click="${(e) =>  this.toggle("files_collapse")}">
-      <slot name="collapse-trigger"> ${this.folder.files.length} Fichiers / Files</slot>
-      <!--  <iron-icon icon="[[_toggle(opened, collapseIcon, expandIcon)]]" hidden$="[[noIcons]]"></iron-icon> -->
-      <paper-icon-button id="files_collapse_icon" icon="icons:expand-more" class="blue" ></paper-icon-button>
-
-      </div>
-      <iron-collapse id="files_collapse" horizontal="[[horizontal]]" no-animation="[[noAnimation]]">
-      <slot name="collapse-content2">
-      ${this.parentTemplate}
-      ${this.folder.files.map((fi) => html`
-        ${itemTemplate(fi)}
-        `)
-      }
-      </slot>
-      </iron-collapse>
-
-      `:
-      html`${this.parentTemplate}`}
-
-      ${this.file.url?
-        html`
         <hr>
-        <h4>  ${this.file.url}</h4>
-        <small>
-        ${this.file.body}
-        </small>
+
+
+        <div id="trigger2" class="lightblue" @click="${(e) =>  this.toggle("files_collapse")}">
+        <slot name="collapse-trigger"> ${this.folder.files.length} Fichiers / Files</slot>
+        <!--  <iron-icon icon="[[_toggle(opened, collapseIcon, expandIcon)]]" hidden$="[[noIcons]]"></iron-icon> -->
+        <paper-icon-button id="files_collapse_icon" icon="icons:expand-more" class="blue" ></paper-icon-button>
+
+        </div>
+        <iron-collapse id="files_collapse" horizontal="[[horizontal]]" no-animation="[[noAnimation]]">
+        <slot name="collapse-content2">
+        ${this.parentTemplate}
+        ${this.folder.files.map((fi) => html`
+          ${itemTemplate(fi)}
+          `)
+        }
+        </slot>
+        </iron-collapse>
+
         `:
-        html`<p><!--Cliquez sur "Explorer"--></p>`}
+        html`${this.parentTemplate}`}
+
+
 
         </p>
         </div>
-        <img id="cpt" src="" border="0" title="compteur de site" alt="compteur de visites">
-        <solid-utils>Outils Chargement</solid-utils>
-        `;
-      }
-
-      constructor() {
-        super();
-        this.sources = ["https://holacratie.solid.community/public/", "https://smag0.solid.community/public/"]
-        this.url = this.sources[0];
-        this.data = ["one","two","three","four","five","six","seven","huit","neuf"]
-        this.agentGrid = new GridAgent("agentGrid", this);
-        //console.log(this.agentGrid);
-        this.folder = {};
-        this.file = {};
-      }
 
 
 
-      firstUpdated() {
-        this.shadowRoot.getElementById("url_input").value = this.url;
-        //  this._onUrlChange();
-        if (window.location.hostname != "127.0.0.1"){
-          console.log(window.location.hostname);
-          this.shadowRoot.getElementById("cpt").src="https://counter10.allfreecounter.com/private/compteurdevisite.php?c=kap2qgssr21ur788587am4dra6chp35n";
-        }else{
-          console.log(window.location.hostname);
-          this.shadowRoot.getElementById("cpt").src = "";
-        }
-        console.log("TERMINE 1")
-      }
-
-      _onUrlChange(){
-        this.url = this.shadowRoot.getElementById("url_input").value;
-        console.log(this.url)
-        this.agentGrid.send('agentSolid', {type: 'explore', url: this.url });
-      }
-      _onSelect(url){
-        console.log("select",url)
-        this.shadowRoot.getElementById("url_input").value = url;
-        this._onUrlChange();
-      }
-
-      _onNouveau(){
-
-      }
-      _onRecherche(){
-
-      }
-      _onBascule(){
-        console.log(this.shadowRoot.getElementById("bascule").checked);
-        var url = "";
-        if (this.shadowRoot.getElementById("bascule").checked){
-          url = this.sources[0]
-        }else{
-          url = this.sources[1]
-        }
-        this.shadowRoot.getElementById("url_input").value = url;
-        this._onUrlChange();
-      }
-      exploreReponse(reponse, status){
-        console.log("|||||||||||||||||||||||\nREPONSE :",reponse)
-        switch (status) {
-          case 'folder':
-          this.folder = reponse;
-          this.agentGrid.send('agentGraph', {type: 'currentChanged', current: reponse });
-          console.log(this.folder)
-          break;
-          case 'file':
-          this.file = reponse;
-          console.log(this.file)
-          break;
-          default:
-          alert ("Impossible d'exploiter la réponse : ",status, reponse)
-        }
-      }
-
-      toggle(which) {
-        var which_icon = which+"_icon";
-        this.shadowRoot.getElementById(which).toggle();
-        if(this.shadowRoot.getElementById(which).opened){
-          this.shadowRoot.getElementById(which_icon).icon =  "icons:expand-less"
-        }else{
-          this.shadowRoot.getElementById(which_icon).icon =  "icons:expand-more";
-        }
-      }
-
-      // TEmplates
-
-      get parentTemplate() {
-        return html`
-        <paper-item raised @click="${(e) =>  this._onSelect(this.folder.parent)}">&nbsp;
-        <div class="lightblue">
-        <paper-icon-button icon="icons:arrow-upward" class="blue"></paper-icon-button>
-        ${this.folder.parent}
         </div>
-        </paper-item>`;
+        <vaadin-split-layout orientation="vertical">
+        <div  style="height: 400px;">
+        <solid-graph></solid-graph>
+        </div>
+        <div>
+
+
+        ${this.file.url?
+          html`
+          ${this.file.url}
+          `:
+          html`<p>Selectionnez un fichier dans le navigateur</p>`}
+
+        <ace-widget
+        id="acetwo"
+        theme="ace/theme/monokai"
+        mode="ace/mode/turtle"
+        softtabs="true"
+        wrap="true">
+        </ace-widget>
+
+
+
+          </div>
+          </vaadin-split-layout>
+          </vaadin-split-layout>
+
+          <img id="cpt" src="" border="0" title="compteur de site" alt="compteur de visites">
+          <solid-utils>Outils Chargement</solid-utils>
+
+
+
+
+          `;
+        }
+
+        constructor() {
+          super();
+          this.sources = ["https://holacratie.solid.community/public/", "https://smag0.solid.community/public/"]
+          this.url = this.sources[0];
+          this.data = ["one","two","three","four","five","six","seven","huit","neuf"]
+          this.agentGrid = new GridAgent("agentGrid", this);
+          //console.log(this.agentGrid);
+          this.folder = {};
+          this.file = {};
+        }
+
+
+
+        firstUpdated() {
+          this.shadowRoot.getElementById("url_input").value = this.url;
+          //  this._onUrlChange();
+          if (window.location.hostname != "127.0.0.1"){
+            console.log(window.location.hostname);
+            this.shadowRoot.getElementById("cpt").src="https://counter10.allfreecounter.com/private/compteurdevisite.php?c=kap2qgssr21ur788587am4dra6chp35n";
+          }else{
+            console.log(window.location.hostname);
+            this.shadowRoot.getElementById("cpt").src = "";
+          }
+          console.log("TERMINE 1")
+          //  console.log("ACE ",ace)
+        }
+
+        _onUrlChange(){
+          this.url = this.shadowRoot.getElementById("url_input").value;
+          console.log(this.url)
+          this.agentGrid.send('agentSolid', {type: 'explore', url: this.url });
+        }
+        _onSelect(url){
+          console.log("select",url)
+          this.shadowRoot.getElementById("url_input").value = url;
+          this._onUrlChange();
+        }
+
+        _onNouveau(){
+
+        }
+        _onRecherche(){
+
+        }
+        _onBascule(){
+          console.log(this.shadowRoot.getElementById("bascule").checked);
+          var url = "";
+          if (this.shadowRoot.getElementById("bascule").checked){
+            url = this.sources[0]
+          }else{
+            url = this.sources[1]
+          }
+          this.shadowRoot.getElementById("url_input").value = url;
+          this._onUrlChange();
+        }
+        exploreReponse(reponse, status){
+          console.log("|||||||||||||||||||||||\nREPONSE :",reponse)
+          switch (status) {
+            case 'folder':
+            this.folder = reponse;
+            this.agentGrid.send('agentGraph', {type: 'currentChanged', current: reponse });
+            console.log(this.folder)
+            break;
+            case 'file':
+            this.file = reponse;
+            console.log(this.file)
+            this.shadowRoot.getElementById('acetwo').editorValue = this.file.body;
+            break;
+            default:
+            alert ("Impossible d'exploiter la réponse : ",status, reponse)
+          }
+        }
+
+        toggle(which) {
+          var which_icon = which+"_icon";
+          this.shadowRoot.getElementById(which).toggle();
+          if(this.shadowRoot.getElementById(which).opened){
+            this.shadowRoot.getElementById(which_icon).icon =  "icons:expand-less"
+          }else{
+            this.shadowRoot.getElementById(which_icon).icon =  "icons:expand-more";
+          }
+        }
+
+        // TEmplates
+
+        get parentTemplate() {
+          return html`
+          <paper-item raised @click="${(e) =>  this._onSelect(this.folder.parent)}">&nbsp;
+          <div class="lightblue">
+          <paper-icon-button icon="icons:arrow-upward" class="blue"></paper-icon-button>
+          ${this.folder.parent}
+          </div>
+          </paper-item>`;
+        }
+
+
+
+
+
+
       }
-
-
-
-
-
-
-    }
-    window.customElements.define('spoggy-grid', SpoggyGrid);
+      window.customElements.define('spoggy-grid', SpoggyGrid);

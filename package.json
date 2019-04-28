@@ -7,9 +7,9 @@
   "license": "BSD-3-Clause",
   "repository": "scenaristeur/spoggyfr",
   "scripts": {
-    "start": "polymer serve",
-    "build": "polymer build --auto-base-path && gulp prpl-server",
-    "build:static": "polymer build",
+    "start": "cross-env NODE_OPTIONS=--max_old_space_size=4096 polymer serve",
+    "build": "cross-env NODE_OPTIONS=--max_old_space_size=4096 polymer build --auto-base-path && gulp prpl-server",
+    "build:static": "cross-env NODE_OPTIONS=--max_old_space_size=4096 polymer build",
     "build:static_es5": "export NODE_OPTIONS=--max_old_space_size=4096 && polymer build --preset es5-bundled",
     "build:static_es5_windows": "set NODE_OPTIONS=--max_old_space_size=4096 && polymer build --preset es5-bundled",
     "build:static_es5_v": "polymer build --preset es5-bundled -v",
@@ -25,6 +25,7 @@
     "test:regenerate_screenshots": "mocha test/integration/screenshots-baseline/regenerate.js --timeout=15000"
   },
   "dependencies": {
+    "@granite-elements/ace-widget": "^2.2.7-b1",
     "@polymer/app-layout": "^3.0.0",
     "@polymer/iron-collapse": "^3.0.1",
     "@polymer/iron-icons": "^3.0.1",
@@ -35,6 +36,7 @@
     "@polymer/paper-item": "^3.0.1",
     "@polymer/paper-toggle-button": "^3.0.1",
     "@polymer/polymer": "^3.1.0",
+    "@vaadin/vaadin-split-layout": "^4.1.0",
     "@webcomponents/webcomponentsjs": "^2.2.8",
     "browserify": "^16.2.3",
     "evejs": "github:scenaristeur/evejs",
@@ -49,6 +51,7 @@
     "@polymer/test-fixture": "^4.0.2",
     "axe-core": "^3.0.0",
     "chai": "^4.1.2",
+    "cross-env": "^5.2.0",
     "del": "^3.0.0",
     "gulp": "^4.0.0",
     "gulp-rename": "^1.3.0",
