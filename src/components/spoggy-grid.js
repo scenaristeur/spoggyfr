@@ -17,6 +17,7 @@ import '@polymer/paper-toggle-button/paper-toggle-button.js';
 import '@vaadin/vaadin-split-layout/vaadin-split-layout.js';
 import  './graphe/solid-graph.js';
 import '@granite-elements/ace-widget/ace-widget.js';
+//import '@polymer/iron-flex-layout/iron-flex-layout-classes.js';
 
 
 class SpoggyGrid extends LitElement {
@@ -64,6 +65,21 @@ class SpoggyGrid extends LitElement {
     // FIN TEMPLATES
     return html`
     <style>
+/*    .container {
+  background-color: #ccc;
+  padding: 5px;
+  margin: 0;
+}
+.container > div {
+  padding: 15px;
+  margin: 5px;
+  background-color: white;
+  min-height: 20px;
+}
+.test { width: 100px; }
+    .flex {
+      @apply --layout-horizontal;
+    }*/
     paper-icon-button.blue {
       --paper-icon-button-ink-color: var(--paper-orange-500);
       background-color: var(--paper-light-blue-500);
@@ -81,10 +97,19 @@ class SpoggyGrid extends LitElement {
     }
     </style>
 
-
+  <!--  l
+    <div class="container flex">
+    <div class="test">one</div>
+    <div class="test">two</div>
+    <div class="test">three</div>
+    <div class="layout horizontal center-center">
+       <div class="test">horizontal layout center alignment</div>
+     </div>
+    </div>
+    l-->
 
     <vaadin-split-layout >
-    <div style="width: 33%;">
+    <div style="width: 45%;">
     <paper-toggle-button id="bascule" checked @click="${(e) => this._onBascule(e)}" >smag0 / holacratie</paper-toggle-button>
     <div>
     <p>
@@ -140,6 +165,9 @@ class SpoggyGrid extends LitElement {
 
 
         </p>
+
+
+
         </div>
 
 
