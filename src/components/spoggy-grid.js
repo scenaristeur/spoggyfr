@@ -84,7 +84,7 @@ class SpoggyGrid extends LitElement {
 
 
     <vaadin-split-layout >
-    <div>
+    <div style="width: 33%;">
     <paper-toggle-button id="bascule" checked @click="${(e) => this._onBascule(e)}" >smag0 / holacratie</paper-toggle-button>
     <div>
     <p>
@@ -146,7 +146,7 @@ class SpoggyGrid extends LitElement {
 
         </div>
         <vaadin-split-layout orientation="vertical">
-        <div  style="height: 400px;">
+        <div style="height: 50%;">
         <solid-graph></solid-graph>
         </div>
         <div>
@@ -166,18 +166,12 @@ class SpoggyGrid extends LitElement {
         wrap="true">
         </ace-widget>
 
-
-
           </div>
           </vaadin-split-layout>
           </vaadin-split-layout>
 
           <img id="cpt" src="" border="0" title="compteur de site" alt="compteur de visites">
           <solid-utils>Outils Chargement</solid-utils>
-
-
-
-
           `;
         }
 
@@ -196,13 +190,14 @@ class SpoggyGrid extends LitElement {
 
         firstUpdated() {
           this.shadowRoot.getElementById("url_input").value = this.url;
-          //  this._onUrlChange();
+
           if (window.location.hostname != "127.0.0.1"){
             console.log(window.location.hostname);
+            this._onUrlChange();
             this.shadowRoot.getElementById("cpt").src="https://counter10.allfreecounter.com/private/compteurdevisite.php?c=kap2qgssr21ur788587am4dra6chp35n";
           }else{
             console.log(window.location.hostname);
-            this.shadowRoot.getElementById("cpt").src = "";
+            this.shadowRoot.getElementById("cpt").style.display = "none";
           }
           console.log("TERMINE 1")
           //  console.log("ACE ",ace)
