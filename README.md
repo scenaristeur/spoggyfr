@@ -18,12 +18,13 @@ Actions uitilisateurs
   - [ ] explorer des datasets / endpoints Sparql DBPEDIA, PERSEE...
   - [ ] proposer un endpoint
 - Mode Solid
+  - [ ] demander autorisation d'enregistrer le POD de l'utilisateur dans la liste des PODS, avec possibilité de gérer les droits, de supprimer de la liste des pods publics
   - [ ] explorer un POD, friends,...
   - [ ] update d'un POD
 - Mode Holacratie
 
 
-- [ ] implement Solid Websocket API https://github.com/solid/solid-spec/blob/master/api-websockets.md
+- [ ] implement Solid Websocket API https://github.com/solid/solid-spec/blob/master/api-websockets.md (test dans view4)
 
 
 

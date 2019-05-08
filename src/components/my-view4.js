@@ -38,8 +38,8 @@ class MyView4 extends PageViewElement {
     console.log ("socket",socket)
     socket.onopen = function() {
       this.send('sub https://spoggy.solid.community/public/test/fichier.ttl');
-      this.send('sub https://spoggy.solid.community/public/test');
-      this.send('sub https://spoggy.solid.community/public/test/index.ttl');
+      this.send('sub https://spoggy.solid.community/public/test/fichier2.ttl');
+
     };
     socket.onmessage = function(msg) {
       if (msg.data && msg.data.slice(0, 3) === 'pub') {
