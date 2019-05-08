@@ -25,10 +25,32 @@ class MyView4 extends PageViewElement {
   render() {
     return html`
     <section>
-Blop
+    Blop
     </section>
     `;
   }
+
+
+  constructor() {
+    super();
+  //  var socket = new WebSocket('wss://example.org/');
+  var socket = new WebSocket('wss://spoggy.solid.community/');
+    console.log ("socket",socket)
+    socket.onopen = function() {
+      this.send('sub https://spoggy.solid.community/public/test/fichier.ttl');
+      this.send('sub https://spoggy.solid.community/public/test');
+      this.send('sub https://spoggy.solid.community/public/test/index.ttl');
+    };
+    socket.onmessage = function(msg) {
+      if (msg.data && msg.data.slice(0, 3) === 'pub') {
+        // resource updated, refetch resource
+        console.log("msg",msg);
+        console.log("data",msg.data)
+      }
+    };
+  }
+
+
 }
 
 window.customElements.define('my-view4', MyView4);
