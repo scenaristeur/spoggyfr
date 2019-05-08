@@ -255,7 +255,7 @@ class VisPopup extends LitElement {
 
   constructor() {
     super();
-    this.mood = 'vis-popup';
+    //this.mood = 'vis-popup';
     this.r = 173;
     this.g = 208;
     this.b = 255;
@@ -549,9 +549,9 @@ saveEdgeData (data, callback) {
   if (typeof data.from === 'object')
   data.from = data.from.id
   data.label = this.shadowRoot.getElementById("edgeLabel").value;
-  console.log(data);
+//  console.log(data);
   this.clearEdgePopUp();
-  console.log(callback)
+//  console.log(callback)
   if (typeof callback == 'function'){
     callback(data);
   }

@@ -49,27 +49,27 @@ class VisInput extends LitElement {
   constructor() {
     super();
     //  this._input = this.shadowRoot.getElementById('input');
-    //  this.destinataire = "test"
-    //  console.log("DESTINATAIRE1:",this.destinataire)
+    //  agentVis = "test"
+    //  console.log("DESTINATAIRE1:",agentVis)
   }
   firstUpdated() {
-    //this.name = this.destinataire+"_Input"
-    this.agentVisinput = new VisinputAgent(this.id, this);
-    console.log(this.agentVisinput);
-    this.agentVisinput.send('agentApp', {type: 'dispo', name: 'agentInput' });
-    console.log("DESTINATAIRE2:",this.destinataire);
+    //this.name = agentVis+"_Input"
+    this.agentInput = new VisinputAgent("inputAgent", this);
+    console.log(this.agentInput);
+    //this.agentInput.send('agentApp', {type: 'dispo', name: 'agentInput' });
+    //console.log("DESTINATAIRE2:",agentVis);
 
   }
 
 
   _inputChanged(){
     if (this.shadowRoot.getElementById('input') != null){ // revoir l'initialisation de cet element
-    console.log(this.shadowRoot.getElementById('input').value , "vers ", this.destinataire)
+    console.log(this.shadowRoot.getElementById('input').value , "vers ", "agentVis")
     var retour = this.traiteMessage(this.shadowRoot.getElementById('input').value);
     this.shadowRoot.getElementById('input').value =  retour.inputNew;
     if (retour.message != undefined){
       console.log(retour);
-      this.agentVisinput.send(this.destinataire, {type: "catchTriplet", triplet:retour.message});
+      this.agentInput.send("agentVis", {type: "catchTriplet", triplet:retour.message});
     }
   }
 }
@@ -212,20 +212,20 @@ catchCommande(commande){
     case "/exportJson":
     //this.exportJson();
     //  this.agentInput.send('agentGraph', {type: 'exportJson'})
-    this.agentVisinput.send(this.destinataire, {type: 'exportJson'});
+    this.agentInput.send("agentPopup", {type: 'exportJson'});
     break;
     case "/t":
     //  this.exportTtl(this.network,this);
     //  this.agentInput.send('agentGraph', {type:'exportTtl'}); // , what: 'network', to: 'agentDialogs', where: 'inputTextToSave'
     //    this.agentInput.send('agentDialogs', {type:'toggle', popup: 'popupTtl'})
-    this.agentVisinput.send(this.destinataire, {type: 'exportTtl'});
+    this.agentInput.send("agentPopup", {type: 'exportTtl'});
     break;
     case "/i":
     case "/import":
     case "/importJson":
     //  importJson(network,app);
     //this.$.dialogs.$.importPopUp.toggle();
-    this.agentVisinput.send(this.destinataire, {type: 'importJson'})
+    this.agentInput.send("agentPopup", {type: 'importJson'})
     //  this.$.dialogs.$.dialogs.openImport(this.network)
     break;
     case "/n":
@@ -233,7 +233,7 @@ catchCommande(commande){
     //  this.newGraph(this.network, this);
     //  this.agentInput.send('agentGraph', {type: 'newGraph'})
     //  this.agentInput.send('agentSparqlUpdate', {type: "newGraph"});
-    this.agentVisinput.send(this.destinataire, {type: 'newGraph'})
+    this.agentInput.send("agentVis", {type: 'newGraph'})
     break;
     case "/b":
     console.log("connection a la base levelgraph");

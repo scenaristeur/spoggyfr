@@ -2,7 +2,8 @@
 
 Actions uitilisateurs
 - Mode Solo
-  - creer un graphe ajouter, un noeud, un lien
+  - [ X ] ajouter, un noeud, un lien
+  - [ ] creer un graphe
   - [ ] exporter un graphe en
     - [ ] en JSON
     - [ ] en turtle
