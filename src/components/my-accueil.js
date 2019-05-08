@@ -15,7 +15,7 @@ import { PageViewElement } from './page-view-element.js';
 import { SharedStyles } from './shared-styles.js';
 
 
-class MyGlobal extends PageViewElement {
+class MyAccueil extends PageViewElement {
   static get styles() {
     return [
       SharedStyles
@@ -25,7 +25,7 @@ class MyGlobal extends PageViewElement {
   render() {
     return html`
     <section>
-    Global
+    Accueil
     </section>
     `;
   }
@@ -39,4 +39,4 @@ class MyGlobal extends PageViewElement {
 
 }
 
-window.customElements.define('my-global', MyGlobal);
+window.customElements.define('my-accueil', MyAccueil);

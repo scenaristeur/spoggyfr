@@ -193,7 +193,7 @@ class MyApp extends LitElement {
 
     <!-- This gets hidden on a small screen-->
     <nav class="toolbar-list">
-    <a ?selected="${this._page === 'view1'}" href="/view1">Accueil</a>
+    <a ?selected="${this._page === 'accueil'}" href="/accueil">Accueil</a>
     <a ?selected="${this._page === 'solo'}" href="/solo">Solo</a>
     <a ?selected="${this._page === 'collaboratif'}" href="/collaboratif">Collaboratif</a>
     <a ?selected="${this._page === 'global'}" href="/global">Global</a>
@@ -208,7 +208,7 @@ class MyApp extends LitElement {
     .opened="${this._drawerOpened}"
     @opened-changed="${this._drawerOpenedChanged}">
     <nav class="drawer-list">
-    <a ?selected="${this._page === 'view1'}" href="/view1">Accueil</a>
+    <a ?selected="${this._page === 'accueil'}" href="/accueil">Accueil</a>
     <a ?selected="${this._page === 'solo'}" href="/solo">Solo</a>
     <a ?selected="${this._page === 'collaboratif'}" href="/collaboratif">Collaboratif</a>
     <a ?selected="${this._page === 'global'}" href="/global">Global</a>
@@ -220,7 +220,7 @@ class MyApp extends LitElement {
 
     <!-- Main content -->
     <main role="main" class="main-content">
-    <my-view1 class="page" ?active="${this._page === 'view1'}"></my-view1>
+    <my-accueil class="page" ?active="${this._page === 'accueil'}"></my-accueil>
     <my-solo class="page" ?active="${this._page === 'solo'}">Le premier chargement du graphe peut être long...</my-solo>
     <my-collaboratif class="page" ?active="${this._page === 'collaboratif'}">Le premier chargement du graphe peut être long...</my-collaboratif>
     <my-global class="page" ?active="${this._page === 'global'}">Le premier chargement du graphe peut être long...</my-global>
@@ -288,7 +288,7 @@ class MyApp extends LitElement {
 
   _locationChanged(location) {
     const path = window.decodeURIComponent(location.pathname);
-    const page = path === '/' ? 'view1' : path.slice(1);
+    const page = path === '/' ? 'accueil' : path.slice(1);
     this._loadPage(page);
     // Any other info you might want to extract from the path (like page type),
     // you can do here.
@@ -305,10 +305,10 @@ class MyApp extends LitElement {
 
   _loadPage(page) {
     switch(page) {
-      case 'view1':
-      import('../components/my-view1.js').then((module) => {
+      case 'accueil':
+      import('../components/my-accueil.js').then((module) => {
         // Put code in here that you want to run every time when
-        // navigating to view1 after my-view1.js is loaded.
+        // navigating to accueil after my-accueil.js is loaded.
       });
       break;
       case 'solo':
