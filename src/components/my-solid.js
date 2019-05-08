@@ -13,6 +13,7 @@ import { PageViewElement } from './page-view-element.js';
 
 // These are the shared styles needed by this element.
 import { SharedStyles } from './shared-styles.js';
+import './spoggy-grid.js';
 
 
 class MySolid extends PageViewElement {
@@ -24,19 +25,20 @@ class MySolid extends PageViewElement {
 
   render() {
     return html`
-    <section>
-    Solid
-    </section>
+    <!--  <section>
+    <h2>Spoggy</h2>
+    <p>This is a text-only page.</p>
+    <p>It doesn't do anything other than display some static text.</p>
+    </section>-->
+    <!--  <section>
+    <h2>Welcome</h2>
+    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam ac nisi orci. Maecenas sollicitudin diam in diam efficitur cursus. Morbi sollicitudin in justo tincidunt placerat. Integer tincidunt elementum nisi, eu ornare dolor lacinia eget. Fusce pulvinar massa eget odio placerat, commodo molestie ipsum tempus. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Suspendisse porttitor id purus eu cursus. Suspendisse arcu nulla, mattis vel hendrerit et, malesuada a elit. Nam at diam ornare, aliquet est sed, malesuada metus. Cras nec enim vel nibh tincidunt euismod ut et enim. Etiam pharetra eros in sodales iaculis. Duis sagittis urna et cursus mollis. Cras tempor rutrum est. Praesent sollicitudin ligula at laoreet placerat. Praesent tortor dui, semper in sapien non, pharetra luctus turpis.</p>
+    </section>-->
+
+    <spoggy-grid>Chargement de spoggy-grid</spoggy-grid>
+
     `;
   }
-
-
-  constructor() {
-    super();
-
-  }
-
-
 }
 
 window.customElements.define('my-solid', MySolid);

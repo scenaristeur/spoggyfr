@@ -15,7 +15,7 @@ import { PageViewElement } from './page-view-element.js';
 import { SharedStyles } from './shared-styles.js';
 
 
-class MyAccueil extends PageViewElement {
+class MySolid extends PageViewElement {
   static get styles() {
     return [
       SharedStyles
@@ -25,15 +25,7 @@ class MyAccueil extends PageViewElement {
   render() {
     return html`
     <section>
-    Accueil
-    <br>
-    look at / jetez un oeil à <a href="/solid">Solid</a> <br>
-    old version with Polymer 2 (wait 15s and refresh if nothing appear) -->
-    <a href="http://spoggy.herokuapp.com/" target="_blank">http://spoggy.herokuapp.com/</a> <br>
-    ancienne version avec Polymer 2 (attendre 15s et rafraichir pour laisser le temps au serveur de se reveiller) -->
-    <a href="http://spoggy.herokuapp.com/" target="_blank">http://spoggy.herokuapp.com/</a>
-
-
+    Solid
     </section>
     `;
   }
@@ -47,4 +39,4 @@ class MyAccueil extends PageViewElement {
 
 }
 
-window.customElements.define('my-accueil', MyAccueil);
+window.customElements.define('my-solid', MySolid);

@@ -198,6 +198,8 @@ class MyApp extends LitElement {
     <a ?selected="${this._page === 'collaboratif'}" href="/collaboratif">Collaboratif</a>
     <a ?selected="${this._page === 'global'}" href="/global">Global</a>
     <a ?selected="${this._page === 'solid'}" href="/solid">Solid</a>
+    <a ?selected="${this._page === 'navigateur'}" href="/navigateur">Navigateur</a>
+    <a ?selected="${this._page === 'editeur'}" href="/editeur">Editeur</a>
     <a ?selected="${this._page === 'holacratie'}" href="/holacratie">Holacratie</a>
     <a ?selected="${this._page === 'compte'}" href="/compte">Mon compte</a>
     </nav>
@@ -213,6 +215,8 @@ class MyApp extends LitElement {
     <a ?selected="${this._page === 'collaboratif'}" href="/collaboratif">Collaboratif</a>
     <a ?selected="${this._page === 'global'}" href="/global">Global</a>
     <a ?selected="${this._page === 'solid'}" href="/solid">Solid</a>
+    <a ?selected="${this._page === 'navigateur'}" href="/navigateur">Navigateur</a>
+    <a ?selected="${this._page === 'editeur'}" href="/editeur">Editeur</a>
     <a ?selected="${this._page === 'holacratie'}" href="/holacratie">Holacratie</a>
     <a ?selected="${this._page === 'compte'}" href="/compte">Mon compte</a>
     </nav>
@@ -224,8 +228,10 @@ class MyApp extends LitElement {
     <my-solo class="page" ?active="${this._page === 'solo'}">Le premier chargement du graphe peut être long...</my-solo>
     <my-collaboratif class="page" ?active="${this._page === 'collaboratif'}">Le premier chargement du graphe peut être long...</my-collaboratif>
     <my-global class="page" ?active="${this._page === 'global'}">Le premier chargement du graphe peut être long...</my-global>
-    <my-holacratie class="page" ?active="${this._page === 'holacratie'}">Le premier chargement du graphe peut être long...</my-holacratie>
     <my-solid class="page" ?active="${this._page === 'solid'}">Le premier chargement du graphe peut être long...</my-solid>
+    <my-navigateur class="page" ?active="${this._page === 'navigateur'}">Le premier chargement du graphe peut être long...</my-navigateur>
+    <my-editeur class="page" ?active="${this._page === 'editeur'}">Le premier chargement du graphe peut être long...</my-editeur>
+    <my-holacratie class="page" ?active="${this._page === 'holacratie'}">Le premier chargement du graphe peut être long...</my-holacratie>
 
     <my-compte class="page" ?active="${this._page === 'compte'}"></my-compte>
     <my-view404 class="page" ?active="${this._page === 'view404'}"></my-view404>
@@ -325,6 +331,12 @@ class MyApp extends LitElement {
       break;
       case 'holacratie':
       import('../components/my-holacratie.js');
+      break;
+      case 'navigateur':
+      import('../components/my-navigateur.js');
+      break;
+      case 'editeur':
+      import('../components/my-editeur.js');
       break;
 
       case 'compte':
