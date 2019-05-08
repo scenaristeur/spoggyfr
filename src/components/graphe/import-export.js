@@ -898,7 +898,7 @@ filepicker.network = network;*/
 }
 
 
-function exportTtl(network) {
+export function exportTtl(network) {
 /* source https://github.com/scenaristeur/dreamcatcherAutonome/blob/master/autonome/public/agents/ExportAgent.js */
 //let network = this.network;
 var nodes = network.body.data.nodes.get();
@@ -1059,7 +1059,7 @@ return out;
 }
 
 
-function exportJson(network) {
+export function exportJson(network) {
 //var network = this.network;
 console.log(network)
 var filename = prompt("Sous quel nom sauvegarder ce graphe ?", "Spoggy");
@@ -1157,7 +1157,7 @@ function validRdf(network, string){
   return string;
 }
 
-function decortiqueFile(fichier, remplaceNetwork, network){
+export function decortiqueFile(fichier, remplaceNetwork, network){
   //  var network = network;
   //  console.log(network);
 //  let network = this.network;

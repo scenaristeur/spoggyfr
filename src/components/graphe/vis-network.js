@@ -1,9 +1,10 @@
 import {  LitElement, html} from 'lit-element';
-//import '/node_modules/vis/dist/vis-network.min.js';
+import { exportJson, exportTtl, decortiqueFile } from './import-export.js';
 import './vis/vis-network.min.js';
 import { GraphStyles } from './graph-styles.js';
 import  '/node_modules/evejs/dist/eve.custom.js';
-import { VisAgent } from './agents/VisAgent.js'
+import { VisAgent } from './agents/VisAgent.js';
+
 
 class VisNetwork extends LitElement {
 
@@ -424,12 +425,22 @@ localname(node){
 
 
 exportTtl(){
+/*  window.location = "/editeur"
+  window.history.pushState({}, null, '/editeur');
+window.dispatchEvent(new CustomEvent('location-changed'));*/
   var output = exportTtl(this.network)
-  this.agentVis.send('agentPopup', {type:'exportTtl', ttlData : output});
+  this.agentVis.send('agentEditeur', {type:'exportTtl', data : output});
+  window.location.href = '/editeur';
+  // or: location.href='https://stackoverflow.com';
 }
 
 exportJson(){
-  exportJson(this.network)
+    /*window.location = "/editeur"
+  window.history.pushState({}, null, '/editeur');
+window.dispatchEvent(new CustomEvent('location-changed'));*/
+  var output = exportJson(this.network)
+  this.agentVis.send('agentEditeur', {type:'exportJson', data : output});
+
 }
 
 importJson(){

@@ -13,7 +13,7 @@ import { PageViewElement } from './page-view-element.js';
 
 // These are the shared styles needed by this element.
 import { SharedStyles } from './shared-styles.js';
-
+import  './editeur/editeur-element.js';
 
 class MyEditeur extends PageViewElement {
   static get styles() {
@@ -27,12 +27,19 @@ class MyEditeur extends PageViewElement {
     <section>
     Editeur
     </section>
+    <editeur-element></editeur-element>
+
     `;
   }
 
 
   constructor() {
     super();
+
+  }
+
+  firstUpdated(){
+    this.shadowRoot.getElementById('acetwo').editorValue = "BLOP a text";
 
   }
 

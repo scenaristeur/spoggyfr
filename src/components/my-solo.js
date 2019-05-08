@@ -20,6 +20,7 @@ class MySolo extends PageViewElement {
     <vis-input></vis-input>
     <vis-network></vis-network>
     <vis-popup></vis-popup>
+
     `;
   }
 

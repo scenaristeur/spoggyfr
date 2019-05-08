@@ -172,10 +172,11 @@ class VisPopup extends LitElement {
     </paper-dialog>
 
 
-
+<!--  entry-animation="scale-up-animation"
+  exit-animation="fade-out-animation"
+  -->
     <paper-dialog
-    entry-animation="scale-up-animation"
-    exit-animation="fade-out-animation"
+
     id="importPopUp"
     class="popup"
     backdrop
@@ -646,6 +647,9 @@ handleFileSelected(evt) {
   //  app.$.dialogs.$.inputMessage.value = '';
 }
 
+importJson(){
+    this.shadowRoot.getElementById("importPopUp").toggle();
+}
 
 }
 

@@ -212,13 +212,13 @@ catchCommande(commande){
     case "/exportJson":
     //this.exportJson();
     //  this.agentInput.send('agentGraph', {type: 'exportJson'})
-    this.agentInput.send("agentPopup", {type: 'exportJson'});
+    this.agentInput.send("agentVis", {type: 'exportJson'});
     break;
     case "/t":
     //  this.exportTtl(this.network,this);
     //  this.agentInput.send('agentGraph', {type:'exportTtl'}); // , what: 'network', to: 'agentDialogs', where: 'inputTextToSave'
     //    this.agentInput.send('agentDialogs', {type:'toggle', popup: 'popupTtl'})
-    this.agentInput.send("agentPopup", {type: 'exportTtl'});
+    this.agentInput.send("agentVis", {type: 'exportTtl'});
     break;
     case "/i":
     case "/import":

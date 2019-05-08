@@ -56,6 +56,10 @@ PopupAgent.prototype.receive = function(from, message) {
     console.log("editEdgeWithoutDrag", message.data);
     this.app.editEdgeWithoutDrag(message.data, message.callback, message.callback2);
     break;
+    case 'importJson':
+    console.log("importJson");
+    this.app.importJson();
+    break;
 
 
 
