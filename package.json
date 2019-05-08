@@ -20,16 +20,21 @@
     "serve:static": "polymer serve --port 5000 build/es5-bundled"
   },
   "dependencies": {
+    "@fooloomanzoo/color-picker": "^3.0.2",
     "@granite-elements/ace-widget": "^2.2.7-b1",
     "@polymer/app-layout": "^3.0.0",
     "@polymer/iron-collapse": "^3.0.1",
     "@polymer/iron-flex-layout": "^3.0.1",
     "@polymer/iron-icons": "^3.0.1",
     "@polymer/paper-button": "^3.0.1",
+    "@polymer/paper-checkbox": "^3.1.0",
     "@polymer/paper-dialog": "^3.0.1",
+    "@polymer/paper-dialog-scrollable": "^3.0.1",
+    "@polymer/paper-dropdown-menu": "^3.0.1",
     "@polymer/paper-icon-button": "^3.0.2",
     "@polymer/paper-input": "^3.0.2",
     "@polymer/paper-item": "^3.0.1",
+    "@polymer/paper-slider": "^3.0.1",
     "@polymer/paper-toggle-button": "^3.0.1",
     "@polymer/polymer": "^3.1.0",
     "@vaadin/vaadin-split-layout": "^4.1.0",
@@ -38,6 +43,7 @@
     "browserify": "^16.2.3",
     "evejs": "github:scenaristeur/evejs",
     "lit-element": "^2.0.1",
+    "paper-collapse-item": "^4.0.5",
     "pwa-helpers": "^0.9.1",
     "rdflib": "^0.20.1",
     "solid-auth-client": "^2.3.0",
@@ -46,6 +52,7 @@
   },
   "devDependencies": {
     "@polymer/test-fixture": "^4.0.2",
+    "acorn": "^6.1.1",
     "axe-core": "^3.0.0",
     "chai": "^4.1.2",
     "cross-env": "^5.2.0",
@@ -59,6 +66,7 @@
     "polyserve": "^0.27.0",
     "prpl-server": "^1.4.0",
     "puppeteer": "^1.14.0",
+    "sinon": "^7.3.2",
     "wct-mocha": "^1.0.0"
   }
 }

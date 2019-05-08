@@ -1,4 +1,4 @@
-import {  LitElement, html,} from 'lit-element';
+import {  LitElement, html} from 'lit-element';
 //import '/node_modules/vis/dist/vis-network.min.js';
 import './vis/vis-network.min.js';
 import { GraphStyles } from './graph-styles.js';
@@ -24,7 +24,7 @@ class VisNetwork extends LitElement {
     }
     </style>
     <div id="mynetwork"></div>
-    <!--<vis-popup id="visPopup" parent="agentVis"></vis-popup>-->
+    <!--<vis-popup id="agentPopup" parent="agentVis"></vis-popup>-->
 
     `;
   }
@@ -93,7 +93,7 @@ class VisNetwork extends LitElement {
             //  console.log(this.shadowRoot.getElementById('popup'));
             console.log("NETWORK ADD NODE ",data,callback)
             //app.editNode(data, app.clearNodePopUp, callback);
-            app.agentVis.send('visPopup', {type: "addNode", data: data, callback: callback});
+            app.agentVis.send('agentPopup', {type: "addNode", data: data, callback: callback});
 
           },
           editNode: function (data, callback) {
@@ -101,7 +101,7 @@ class VisNetwork extends LitElement {
             //app.shadowRoot.getElementById('node-operation').innerHTML = "Edit Node";
             console.log("NETWORK EDIT NODE ",data,callback)
             //  app.editNode(data, app.cancelNodeEdit, callback);
-            app.agentVis.send('visPopup', {type: "editNode", data: data, callback: callback});
+            app.agentVis.send('agentPopup', {type: "editNode", data: data, callback: callback});
           },
           addEdge: function (data, callback) {
             console.log("NETWORK ADD EDGE ", data,callback)
@@ -114,7 +114,7 @@ class VisNetwork extends LitElement {
             }
             //  app.shadowRoot.getElementById('edge-operation').innerHTML = "Add Edge";
             //app.editEdgeWithoutDrag(data, callback);
-            app.agentVis.send('visPopup', {type: "addEdge", data: data, callback: callback});
+            app.agentVis.send('agentPopup', {type: "addEdge", data: data, callback: callback});
           },
           editEdge: {
             //console.log("EDIT EDGE ", data,callback)
@@ -122,7 +122,7 @@ class VisNetwork extends LitElement {
               console.log("NETWORK EDIT WITHOUT DRAG ", data,callback)
               //  app.shadowRoot.getElementById('edge-operation').innerHTML = "Edit Edge";
               //  app.editEdgeWithoutDrag(data,callback);
-              app.agentVis.send('visPopup', {type: "editEdgeWithoutDrag", data: data, callback: callback});
+              app.agentVis.send('agentPopup', {type: "editEdgeWithoutDrag", data: data, callback: callback});
             }
           }
         }
@@ -425,7 +425,7 @@ localname(node){
 
 exportTtl(){
   var output = exportTtl(this.network)
-  this.agentVis.send('visPopup', {type:'exportTtl', ttlData : output});
+  this.agentVis.send('agentPopup', {type:'exportTtl', ttlData : output});
 }
 
 exportJson(){
@@ -433,7 +433,7 @@ exportJson(){
 }
 
 importJson(){
-  this.agentVis.send('visPopup', {type: 'toggle', popup:'importPopUp'})
+  this.agentVis.send('agentPopup', {type: 'toggle', popup:'importPopUp'})
 }
 
 decortiqueFile(fichier, remplaceNetwork){
