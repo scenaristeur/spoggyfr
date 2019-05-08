@@ -1,19 +1,26 @@
 # Spoggy
 
-- actions uitilisateurs
-
-- creer un graphe ajouter, un noeud, un lien
-- [] exporter un graphe en
-- [] en JSON
-- [] en turtle
--  
-- [] ouvrir un graphe via une url
-  - [] ouvrir un graphe fichier ttl (http://spoggyfr/source=https://holacratie.solid.community/public/holacratie.ttl), rdf (https://github.com/jmvanel/semantic_forms)
-  - [] ouvrir un graphe folder (POD Solid) http://spoggyfr/source=https://holacratie.solid.community/public/
-
-- [] ouvrir un graphe (folder ou fichier) via le menu import ou la commande /i
-- []
-
+Actions uitilisateurs
+- Mode Solo
+  - creer un graphe ajouter, un noeud, un lien
+  - [ ] exporter un graphe en
+    - [ ] en JSON
+    - [ ] en turtle
+  - [ ] ouvrir un graphe via une url
+    - [ ] ouvrir un graphe fichier ttl (http://spoggyfr/source=https://holacratie.solid.community/public/holacratie.ttl), rdf (https://github.com/jmvanel/semantic_forms)
+    - [ ] ouvrir un graphe folder (POD Solid) http://spoggyfr/source=https://holacratie.solid.community/public/
+    - [ ] ouvrir un graphe (folder ou fichier) via le menu import ou la commande /i
+- Mode collaboratif
+  - [ ] se connecter
+  - [ ] creer une room
+  - [ ] entrer une room existante
+- Mode Global (http://spoggy.herokuapp.com/)
+  - [ ] explorer des datasets / endpoints Sparql DBPEDIA, PERSEE...
+  - [ ] proposer un endpoint
+- Mode Solid
+  - [ ] explorer un POD, friends,...
+  - [ ] update d'un POD
+- Mode Holacratie
 
 
 
