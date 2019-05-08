@@ -82,20 +82,25 @@ class SpoggyVis extends LitElement {
 
     // create an array with nodes
     var nodes = new vis.DataSet([
-      {id: "node1", label: 'Node 1'},
-      {id: "node2", label: 'Node 2'},
-      {id: "node3", label: 'Node 3'},
-      {id: "node4", label: 'Node 4'},
-      {id: "node5", label: 'Node 5'}
+      {id: "Spoggy", label: 'Spoggy'},
+      {id: "Solo", label: 'Solo'},
+      {id: "Collaboratif", label: 'Collaboratif'},
+      {id: "Explore", label: 'Explore'},
+      {id: "Solid", label: 'Solid'},
+      {id: "Holacratie", label: 'Holacratie'}
     ]);
 
     // create an array with edges
     var edges = new vis.DataSet([
-      {from: "node1", to: "node3", arrows:'to', label: "type"},
-      {from: "node1", to: "node2", arrows:'to', label: "subClassOf"},
-      {from: "node2", to: "node4", arrows:'to', label: "partOf"},
-      {from: "node2", to: "node5", arrows:'to', label: "first"},
-      {from: "node3", to: "node3", arrows:'to', label: "mange"}
+      {from: "Spoggy", to: "Solo", arrows:'to', label: "niveau 1"},
+      {from: "Spoggy", to: "Collaboratif", arrows:'to', label: "niveau 2"},
+      {from: "Spoggy", to: "Explore", arrows:'to', label: "niveau 3"},
+      {from: "Spoggy", to: "Solid", arrows:'to', label: "niveau 4"},
+      {from: "Spoggy", to: "Holacratie", arrows:'to', label: "niveau 5"},
+      {from: "Solo", to: "Collaboratif", arrows:'to', label: "suivant"},
+      {from: "Collaboratif", to: "Explore", arrows:'to', label: "suivant"},
+      {from: "Explore", to: "Solid", arrows:'to', label: "suivant"},
+      {from: "Solid", to: "Holacratie", arrows:'to', label: "suivant"},
     ]);
 
 
