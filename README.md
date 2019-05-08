@@ -1,5 +1,35 @@
 # Spoggy
 
+- actions uitilisateurs
+
+- creer un graphe ajouter, un noeud, un lien
+- [] exporter un graphe en
+- [] en JSON
+- [] en turtle
+-  
+- [] ouvrir un graphe via une url
+  - [] ouvrir un graphe fichier ttl (http://spoggyfr/source=https://holacratie.solid.community/public/holacratie.ttl), rdf (https://github.com/jmvanel/semantic_forms)
+  - [] ouvrir un graphe folder (POD Solid) http://spoggyfr/source=https://holacratie.solid.community/public/
+
+- [] ouvrir un graphe (folder ou fichier) via le menu import ou la commande /i
+- []
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # based on sarl.io
 SARL is a general-purpose agent-oriented programming language [10]. It
  aims at providing the fundamental abstractions for dealing with standard agent

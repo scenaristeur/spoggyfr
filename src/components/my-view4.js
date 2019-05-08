@@ -25,7 +25,7 @@ class MyView4 extends PageViewElement {
   render() {
     return html`
     <section>
-
+Blop
     </section>
     `;
   }
