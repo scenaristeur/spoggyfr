@@ -198,11 +198,11 @@ class SpoggyVis extends LitElement {
             var current = {}
             current.url = existNode[0].id;
             current.type = existNode[0].type;
-            app.agentVis.send('agentFoldermenu', {type: "currentChanged", current: current});
-            app.agentVis.send('agentCurrent', {type: "currentChanged", current: current});
-          //  app.agentVis.send('agentGraph', {type: "currentChanged", current: current});
-            app.agentVis.send('agentFileeditor', {type: "currentChanged", current: current});
-            app.agentVis.send('agentIde', {type: 'currentChanged', current: current });
+          //  app.agentVis.send('agentFoldermenu', {type: "currentChanged", current: current});
+          //  app.agentVis.send('agentCurrent', {type: "currentChanged", current: current});
+            app.agentVis.send('agentGraph', {type: "currentChanged", current: current});
+          //  app.agentVis.send('agentFileeditor', {type: "currentChanged", current: current});
+          //  app.agentVis.send('agentIde', {type: 'currentChanged', current: current });
             //  app.agentVis.send('agentFoldermenu', {type: "nodeChanged", node: existNode[0]});
             //  network.body.data.nodes.add(data);
             //  var thing = this.thing;

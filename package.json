@@ -37,6 +37,7 @@
     "browserify": "^16.2.3",
     "evejs": "github:scenaristeur/evejs",
     "lit-element": "^2.0.1",
+    "pwa-helpers": "^0.9.1",
     "rdflib": "^0.20.1",
     "solid-auth-client": "^2.3.0",
     "solid-file-client": "^0.5.1",
