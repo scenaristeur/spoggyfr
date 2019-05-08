@@ -1,5 +1,5 @@
 import {  LitElement, html} from 'lit-element';
-import { exportJson, exportTtl, decortiqueFile } from './import-export.js';
+import { exportJson, exportTtl, decortiqueFile, newGraph } from './import-export.js';
 import './vis/vis-network.min.js';
 import { GraphStyles } from './graph-styles.js';
 import  '/node_modules/evejs/dist/eve.custom.js';
@@ -429,8 +429,8 @@ exportTtl(){
   window.history.pushState({}, null, '/editeur');
 window.dispatchEvent(new CustomEvent('location-changed'));*/
   var output = exportTtl(this.network)
-  this.agentVis.send('agentEditeur', {type:'exportTtl', data : output});
-  window.location.href = '/editeur';
+  this.agentVis.send('agentApp', {type:'open', page:'/editeur', data : output});
+//  window.location.href = '/editeur';
   // or: location.href='https://stackoverflow.com';
 }
 
@@ -439,7 +439,7 @@ exportJson(){
   window.history.pushState({}, null, '/editeur');
 window.dispatchEvent(new CustomEvent('location-changed'));*/
   var output = exportJson(this.network)
-  this.agentVis.send('agentEditeur', {type:'exportJson', data : output});
+  this.agentVis.send('agentApp', {type:'open', page:'/editeur', data : output});
 
 }
 

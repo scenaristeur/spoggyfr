@@ -22,6 +22,8 @@ import '@polymer/app-layout/app-scroll-effects/effects/waterfall.js';
 import '@polymer/app-layout/app-toolbar/app-toolbar.js';
 import { menuIcon } from './my-icons.js';
 import './snack-bar.js';
+import  '/node_modules/evejs/dist/eve.custom.js';
+import { AppAgent } from './agents/AppAgent.js';
 
 
 class MyApp extends LitElement {
@@ -261,6 +263,8 @@ class MyApp extends LitElement {
     installOfflineWatcher((offline) => this._offlineChanged(offline));
     installMediaQueryWatcher(`(min-width: 460px)`,
     (matches) => this._layoutChanged(matches));
+    this.agentApp = new AppAgent("agentApp", this);
+    console.log(this.agentApp);
   }
 
   updated(changedProps) {
@@ -311,12 +315,15 @@ class MyApp extends LitElement {
   }
 
   _loadPage(page) {
+    console.log("LOAD", page)
     switch(page) {
       case 'accueil':
       import('../components/my-accueil.js').then((module) => {
         // Put code in here that you want to run every time when
         // navigating to accueil after my-accueil.js is loaded.
+
       });
+
       break;
       case 'solo':
       import('../components/my-solo.js');
@@ -337,6 +344,7 @@ class MyApp extends LitElement {
       import('../components/my-navigateur.js');
       break;
       case 'editeur':
+      console.log("CHARGE EDITEUR")
       import('../components/my-editeur.js');
       break;
 
@@ -361,6 +369,16 @@ class MyApp extends LitElement {
 
   _drawerOpenedChanged(e) {
     this._updateDrawerState(e.target.opened);
+  }
+
+  open(page,data){
+    const newLocation = window.location;
+    newLocation.pathname = page;
+    console.log("newLocation",newLocation)
+  window.history.pushState({}, '', newLocation);
+  this._locationChanged(newLocation);
+  console.log(this._page)
+    this.agentApp.send('agentEditeur', {type:'exportTtl', data : data});
   }
 }
 

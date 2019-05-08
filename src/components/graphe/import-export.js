@@ -832,7 +832,7 @@ function parseRdfsClass(data, triplets){
   return triplets;
 }
 
-function newGraph(network){
+export function newGraph(network){
   //network.body.data.nodes.clear();
   //network.body.data.edges.clear();
 //  let network = this.network;
