@@ -8,29 +8,18 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 */
 
-import { html } from 'lit-element';
-import { PageViewElement } from './page-view-element.js';
+import { css } from 'lit-element';
 
-// These are the shared styles needed by this element.
-import { SharedStyles } from './shared-styles.js';
-
-
-class MyCompte extends PageViewElement {
-  static get styles() {
-    return [
-      SharedStyles
-    ];
+export const ButtonSharedStyles = css`
+  button {
+    font-size: inherit;
+    vertical-align: middle;
+    background: transparent;
+    border: none;
+    cursor: pointer;
   }
 
-  render() {
-    return html`
-    <section>
-    <h2>Mon compte</h2>
-    Mon niveau : 0<br>
-    Mon POD : https://...<br>
-    </section>
-    `;
+  button:hover svg {
+    fill: var(--app-primary-color);
   }
-}
-
-window.customElements.define('my-compte', MyCompte);
+`;

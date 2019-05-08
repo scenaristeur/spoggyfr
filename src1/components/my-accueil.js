@@ -15,7 +15,7 @@ import { PageViewElement } from './page-view-element.js';
 import { SharedStyles } from './shared-styles.js';
 
 
-class MyCompte extends PageViewElement {
+class MyAccueil extends PageViewElement {
   static get styles() {
     return [
       SharedStyles
@@ -25,12 +25,26 @@ class MyCompte extends PageViewElement {
   render() {
     return html`
     <section>
-    <h2>Mon compte</h2>
-    Mon niveau : 0<br>
-    Mon POD : https://...<br>
+    Accueil
+    <br>
+    look at / jetez un oeil à <a href="/solid">Solid</a> <br>
+    old version with Polymer 2 (wait 15s and refresh if nothing appear) -->
+    <a href="http://spoggy.herokuapp.com/" target="_blank">http://spoggy.herokuapp.com/</a> <br>
+    ancienne version avec Polymer 2 (attendre 15s et rafraichir pour laisser le temps au serveur de se reveiller) -->
+    <a href="http://spoggy.herokuapp.com/" target="_blank">http://spoggy.herokuapp.com/</a>
+
+
     </section>
     `;
   }
+
+
+  constructor() {
+    super();
+
+  }
+
+
 }
 
-window.customElements.define('my-compte', MyCompte);
+window.customElements.define('my-accueil', MyAccueil);

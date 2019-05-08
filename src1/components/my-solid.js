@@ -13,7 +13,7 @@ import { PageViewElement } from './page-view-element.js';
 
 // These are the shared styles needed by this element.
 import { SharedStyles } from './shared-styles.js';
-import '../../src1/components/spoggy-grid.js';
+import './spoggy-grid.js';
 
 
 class MySolid extends PageViewElement {

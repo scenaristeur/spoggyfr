@@ -15,7 +15,7 @@ import { PageViewElement } from './page-view-element.js';
 import { SharedStyles } from './shared-styles.js';
 
 
-class MyCompte extends PageViewElement {
+class MyCollaboratif extends PageViewElement {
   static get styles() {
     return [
       SharedStyles
@@ -25,12 +25,18 @@ class MyCompte extends PageViewElement {
   render() {
     return html`
     <section>
-    <h2>Mon compte</h2>
-    Mon niveau : 0<br>
-    Mon POD : https://...<br>
+    Collaboratif
     </section>
     `;
   }
+
+
+  constructor() {
+    super();
+
+  }
+
+
 }
 
-window.customElements.define('my-compte', MyCompte);
+window.customElements.define('my-collaboratif', MyCollaboratif);

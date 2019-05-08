@@ -3,7 +3,7 @@ import { PageViewElement } from './page-view-element.js';
 
 // These are the shared styles needed by this element.
 import { SharedStyles } from './shared-styles.js';
-import  './graphe/vis-network.js';
+import  './graphe/solo-graph.js';
 
 
 class MySolo extends PageViewElement {
@@ -15,8 +15,10 @@ class MySolo extends PageViewElement {
 
   render() {
     return html`
-
-    <vis-network></vis-network>
+    <section>
+    Solo
+    <solo-graph></solo-graph>
+    </section>
     `;
   }
 

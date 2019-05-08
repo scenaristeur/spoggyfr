@@ -238,7 +238,7 @@ class MyApp extends LitElement {
     </main>
 
     <footer>
-    <p>Made with &hearts; by the <a href="https://github.com/scenaristeur/spoggyfr" target="_blank">Smag0 team</a>.</p>
+    <p>Made with &hearts; by the Smag0 team.</p>
     </footer>
 
     <snack-bar ?active="${this._snackbarOpened}">

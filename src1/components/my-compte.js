@@ -25,9 +25,7 @@ class MyCompte extends PageViewElement {
   render() {
     return html`
     <section>
-    <h2>Mon compte</h2>
-    Mon niveau : 0<br>
-    Mon POD : https://...<br>
+Mon compte
     </section>
     `;
   }
