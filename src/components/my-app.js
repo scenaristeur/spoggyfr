@@ -194,8 +194,12 @@ class MyApp extends LitElement {
     <!-- This gets hidden on a small screen-->
     <nav class="toolbar-list">
     <a ?selected="${this._page === 'view1'}" href="/view1">Accueil</a>
-    <a ?selected="${this._page === 'view4'}" href="/view4">Graphe</a>
-    <a ?selected="${this._page === 'view5'}" href="/view5">Mon compte</a>
+    <a ?selected="${this._page === 'solo'}" href="/solo">Solo</a>
+    <a ?selected="${this._page === 'collaboratif'}" href="/collaboratif">Collaboratif</a>
+    <a ?selected="${this._page === 'global'}" href="/global">Global</a>
+    <a ?selected="${this._page === 'solid'}" href="/solid">Solid</a>
+    <a ?selected="${this._page === 'holacratie'}" href="/holacratie">Holacratie</a>
+    <a ?selected="${this._page === 'compte'}" href="/compte">Mon compte</a>
     </nav>
     </app-header>
 
@@ -205,21 +209,30 @@ class MyApp extends LitElement {
     @opened-changed="${this._drawerOpenedChanged}">
     <nav class="drawer-list">
     <a ?selected="${this._page === 'view1'}" href="/view1">Accueil</a>
-    <a ?selected="${this._page === 'view4'}" href="/view4">Graphe</a>
-    <a ?selected="${this._page === 'view5'}" href="/view5">Mon compte</a>
+    <a ?selected="${this._page === 'solo'}" href="/solo">Solo</a>
+    <a ?selected="${this._page === 'collaboratif'}" href="/collaboratif">Collaboratif</a>
+    <a ?selected="${this._page === 'global'}" href="/global">Global</a>
+    <a ?selected="${this._page === 'solid'}" href="/solid">Solid</a>
+    <a ?selected="${this._page === 'holacratie'}" href="/holacratie">Holacratie</a>
+    <a ?selected="${this._page === 'compte'}" href="/compte">Mon compte</a>
     </nav>
     </app-drawer>
 
     <!-- Main content -->
     <main role="main" class="main-content">
     <my-view1 class="page" ?active="${this._page === 'view1'}"></my-view1>
-    <my-view4 class="page" ?active="${this._page === 'view4'}">Le premier chargement du graphe peut être long...</my-view4>
-    <my-view5 class="page" ?active="${this._page === 'view5'}"></my-view5>
+    <my-solo class="page" ?active="${this._page === 'solo'}">Le premier chargement du graphe peut être long...</my-solo>
+    <my-collaboratif class="page" ?active="${this._page === 'collaboratif'}">Le premier chargement du graphe peut être long...</my-collaboratif>
+    <my-global class="page" ?active="${this._page === 'global'}">Le premier chargement du graphe peut être long...</my-global>
+    <my-holacratie class="page" ?active="${this._page === 'holacratie'}">Le premier chargement du graphe peut être long...</my-holacratie>
+    <my-solid class="page" ?active="${this._page === 'solid'}">Le premier chargement du graphe peut être long...</my-solid>
+
+    <my-compte class="page" ?active="${this._page === 'compte'}"></my-compte>
     <my-view404 class="page" ?active="${this._page === 'view404'}"></my-view404>
     </main>
 
     <footer>
-    <p>Made with &hearts; by the Polymer team.</p>
+    <p>Made with &hearts; by the Smag0 team.</p>
     </footer>
 
     <snack-bar ?active="${this._snackbarOpened}">
@@ -298,11 +311,24 @@ class MyApp extends LitElement {
         // navigating to view1 after my-view1.js is loaded.
       });
       break;
-      case 'view4':
-      import('../components/my-view4.js');
+      case 'solo':
+      import('../components/my-solo.js');
       break;
-      case 'view5':
-      import('../components/my-view5.js');
+      case 'collaboratif':
+      import('../components/my-collaboratif.js');
+      break;
+      case 'global':
+      import('../components/my-global.js');
+      break;
+      case 'solid':
+      import('../components/my-solid.js');
+      break;
+      case 'holacratie':
+      import('../components/my-holacratie.js');
+      break;
+
+      case 'compte':
+      import('../components/my-compte.js');
       break;
       default:
       page = 'view404';

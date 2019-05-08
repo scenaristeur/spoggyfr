@@ -15,7 +15,7 @@ import { PageViewElement } from './page-view-element.js';
 import { SharedStyles } from './shared-styles.js';
 
 
-class MyView4 extends PageViewElement {
+class MyHolacratie extends PageViewElement {
   static get styles() {
     return [
       SharedStyles
@@ -25,7 +25,7 @@ class MyView4 extends PageViewElement {
   render() {
     return html`
     <section>
-    Blop
+    Holacratie
     </section>
     `;
   }
@@ -53,4 +53,4 @@ class MyView4 extends PageViewElement {
 
 }
 
-window.customElements.define('my-view4', MyView4);
+window.customElements.define('my-holacratie', MyHolacratie);
