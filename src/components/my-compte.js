@@ -24,10 +24,12 @@ class MyCompte extends PageViewElement {
 
   render() {
     return html`
-    <section>
     <h2>Mon compte</h2>
-    Mon niveau : 0<br>
-    Mon POD : https://...<br>
+      <section>
+    Mon niveau : 0 --> <a href="/evaluation">Evaluation</a>
+    </section>
+    <section>
+    Mon POD : https://... --> <a href="https://solid.inrupt.com/get-a-solid-pod" target="_blank">Obtenir un POD</a><br>
     </section>
     `;
   }

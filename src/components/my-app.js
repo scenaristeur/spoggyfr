@@ -234,6 +234,7 @@ class MyApp extends LitElement {
     <my-holacratie class="page" ?active="${this._page === 'holacratie'}">Le premier chargement du graphe peut être long...</my-holacratie>
 
     <my-compte class="page" ?active="${this._page === 'compte'}"></my-compte>
+    <my-evaluation class="page" ?active="${this._page === 'evaluation'}"></my-evaluation>
     <my-view404 class="page" ?active="${this._page === 'view404'}"></my-view404>
     </main>
 
@@ -341,6 +342,10 @@ class MyApp extends LitElement {
 
       case 'compte':
       import('../components/my-compte.js');
+      break;
+      //
+      case 'evaluation':
+      import('../components/my-evaluation.js');
       break;
       default:
       page = 'view404';
